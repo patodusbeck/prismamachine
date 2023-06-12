@@ -1,0 +1,124 @@
+const Discord = require("discord.js")
+
+module.exports = {
+  name: "shopping", // Coloque o nome do comando
+  description: "✦ » Staff - Vendas", // Coloque a descrição do comando
+  type: Discord.ApplicationCommandType.ChatInput,
+
+  run: async (client, interaction) => {
+        const embedajuda = new Discord.EmbedBuilder()
+        .setTitle('Loja BCC')
+        .setDescription(`
+**Tutorial & Instruções para vendas**
+\`\`\`Última atualização das Key's: 08/04/2023.\`\`\`
+        
+        `)
+        .setColor(`#9c89ac`)
+
+        const b = new Discord.ButtonBuilder()
+        .setLabel('Tutorial')
+        .setEmoji("<:bccin:1016871494514659399>")
+        .setStyle("Secondary")
+        .setCustomId('fun')
+
+        const b1 = new Discord.ButtonBuilder()
+        .setLabel('Keys VIP')
+        .setEmoji("<:bccin:1016871494514659399>")
+        .setStyle("Secondary")
+        .setCustomId('adm')
+
+        const b3 = new Discord.ButtonBuilder()
+        .setLabel("Keys Carros Raros")
+        .setEmoji("<:bccin:1016871494514659399>")
+        .setStyle("Secondary")
+        .setCustomId("music")
+
+        const ac = new Discord.ActionRowBuilder()
+        .addComponents(b, b1, b3)
+
+        const aa = await interaction.reply({embeds: [embedajuda], components: [ac]})
+
+        const ccl = aa.createMessageComponentCollector()
+        ccl.on('collect', async(help) => {
+
+            if(help.customId === "fun") {
+
+                const fun = new Discord.EmbedBuilder()
+                .setTitle('Tutorial')
+                  .setColor("#9c89ad")
+                  .setDescription(`
+                  Bom, vou explicar basicamente como utilizar os comandos e também como
+                  
+                  `)
+                
+                help.reply({embeds: [fun], ephemeral: true})
+            }
+
+            if(help.customId === "adm") {
+
+                const adm = new Discord.EmbedBuilder()
+                .setTitle('Termos de Uso do Prisma Roleplay <:anuncio:1076903591559835708>')
+                  .setColor("#9c89ad")
+                  .setDescription(`
+                
+                  > **1. Responsabilidades do jogador <:livro:1076911723665174549>**
+                  
+                  1.1 - Cada jogador é responsável por sua própria conta e deve mantê-la segura. Não compartilhe sua senha ou outras informações pessoais.
+                  
+                  1.2 - O jogador é responsável por seu comportamento no jogo e por seguir as regras do servidor.
+                  
+                  1.3 - O jogador é responsável por quaisquer ações realizadas em sua conta, incluindo atividades ilegais.
+                  
+                  1.4 - O jogador deve respeitar os direitos autorais e de propriedade intelectual de terceiros.
+                  
+                  > **2. Modificações no jogo <:livro:1076911723665174549>**
+                  
+                  2.1 - É permitido o uso de mods que não afetem o jogo de forma desleal ou prejudiquem a experiência de outros jogadores.
+                  
+                  2.2 - É proibido o uso de mods que possam causar falhas ou bugs no jogo.
+                  
+                  > **3. Suspensão e Banimento <:livro:1076911723665174549>**
+                  
+                  3.1 - A equipe do Brasil Cidade Carioca tem o direito de suspender ou banir jogadores que violem as regras de conduta ou que se comportem de maneira inadequada.
+                  
+                  3.2 - A suspensão ou banimento pode ser temporário ou permanente, dependendo da gravidade da infração.
+                  
+                  3.3 - A equipe do servidor não é obrigada a fornecer aviso prévio antes de aplicar uma suspensão ou banimento.
+                  
+                  > **4. Alterações nos Termos de Uso <:livro:1076911723665174549>**
+                  
+                  4.1 - Os Termos de Uso do Brasil Cidade Carioca podem ser atualizados ou modificados a qualquer momento.
+                  
+                  4.2 - Os jogadores serão notificados sobre quaisquer alterações nos Termos de Uso.
+                  
+                  > **5. Contato <:livro:1076911723665174549>**
+                  
+                  5.1 - Em caso de dúvidas ou problemas, entre em contato com a equipe do Brasil Cidade Carioca por meio do nosso discord oficial ou por meio do suporte in-game.
+                  
+                  > **6. Regras Internas (in-game) <:livro:1076911723665174549>**
+                  
+                  6.1 - Alem deste Termo de Uso, temos nossas regras internas. Leia-as em <#1068755392156422294>`)
+                
+                help.reply({embeds: [adm], ephemeral: true})
+            }
+
+            if(help.customId === "music") {
+
+                const music = new Discord.EmbedBuilder()
+                .setTitle('Regras Gerais Brasil Cidade Carioca <:anuncio:1076903591559835708>')
+                             .setColor("#9c89ad")
+                             .setDescription(`
+                             As regras do Brasil Cidade Carioca são estabelecidas para garantir que os jogadores mantenham um ambiente de jogo **saudável e justo**. As regras definem comportamentos **inaceitáveis** e as punições correspondentes para jogadores que as violarem.
+
+                             ** <:__:1051498240392044555> Para ler as nossas regras, acesse nosso fórum de regras [clicando aqui](https://discord.com/channels/906262123573805087/1068755392156422294)**
+                             
+                             **Lembre-se!** É importante seguir as regras da cidade para manter um ambiente de jogo saudável e justo para todos os jogadores.
+                             `)
+                
+                help.reply({embeds: [music], ephemeral: true})
+            }
+
+        })
+        
+    }
+}

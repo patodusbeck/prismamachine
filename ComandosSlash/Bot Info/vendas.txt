@@ -1,0 +1,100 @@
+const Discord = require("discord.js");
+const { QuickDB } = require("quick.db");
+const db = new QuickDB();
+
+module.exports = {
+    name: "loja",
+    description: "[🪙 - Economia ] - Compre itens na loja",
+    type: Discord.ApplicationCommandType.ChatInput,
+
+    run: async (client, interaction) => {
+        let id = interaction.user.id
+        
+        let bal = await db.get(`bal_${id}`)
+
+        let pick_inv = await db.get(`itempicareta_${id}`)
+
+        let rede_inv = await db.get(`itemrede_${id}`)
+
+        let vara_de_pesca = await db.get(`itemvara_${id}`)
+
+        let embed_loja = new Discord.EmbedBuilder()
+        .setTitle("Loja")
+        .setDescription(`Olá <@${id}>! Abaixo, estarão todos os itens que você pode comprar na loja!`)
+        .addFields(
+            { name: '**Itens de Economia**', value: 'Veja quais itens você quer, e depois clique no Menu para comprar um.\n**Novos itens em breve!**' },
+            { name: '\u200B', value: '\u200B' },
+            { name: 'Picareta', value: '\`2000 moedas\`\nUsada para minerar minérios na mina.\n\n', inline: false },
+            { name: 'Rede de Pesca', value: '\`1000 moedas\`\nUsada para pegar peixes pequenos. Pouca chance de pegar peixes.', inline: false },
+            { name: 'Vara de Pesca', value: 'Não está à venda!', inline: false },
+            { name: '\u200B', value: '\u200b' },
+            { name: '**Itens de Luxo**', value: 'Itens **em breve!**', inline: false },
+        )
+        .setColor("Green")
+        .setImage("sua imagem")
+        .setTimestamp()
+
+        let menu_loja = new Discord.ActionRowBuilder()
+            .addComponents(
+                new Discord.StringSelectMenuBuilder()
+                .setCustomId("painel_loja")
+                .setPlaceholder("Clique aqui para ver os itens!")
+                .setOptions(
+                    {
+                        label: "Itens de Economia",
+                        description: "Abaixo estão todos os itens de economia disponíveis!",
+                        emoji: "seu emoji",
+                        value: "titulo1",
+                    },
+                    {
+                        label: "Picareta",
+                        description: "Compre por 2000 moedas!",
+                        emoji: "seu emoji",
+                        value: "picareta_comprar",
+                    },
+                    {
+                        label: "Rede de Pesca",
+                        description: "Compre por 1000 moedas!",
+                        emoji: "seu emoji",
+                        value: "rede_comprar"
+                    },
+                )
+            )
+
+        let embed_pick_compra = new Discord.EmbedBuilder()
+        .setTitle("Picareta Comprada!")
+        .setDescription(`1 Picareta comprada com sucesso!\nAgora você tem \`${pick_inv} Picaretas\`!`)
+        .setColor("Green")
+
+        let embed_rede_compra = new Discord.EmbedBuilder()
+        .setTitle("Rede de Pesca Comprada!")
+        .setDescription(`1 Rede de Pesca comprada com sucesso!\nAgora você tem \`${rede_inv} Redes de Pesca\`!`)
+        .setColor("Green")
+
+        interaction.reply({ content: `<@${id}>`, embeds: [embed_loja], components: [menu_loja] }).then( () => {
+            interaction.channel.createMessageComponentCollector().on("collect", async (c) => {
+                let valor = c.values[0];
+    
+                if (valor === "picareta_comprar") {
+                    if (bal <= 1999){
+                        interaction.reply("Você não tem dinheiro suficiente!")
+                    } else {
+                        c.deferUpdate()
+                        interaction.editReply({ content: `<@${id}>`, embeds: [embed_pick_compra], ephemeral: true })
+                        await db.add(`itempicareta_${id}`, 1)
+                        await db.sub(`bal_${id}`, 2000)
+                    }
+                } else if (valor === "rede_comprar") {
+                    if (bal <= 999){
+                        interaction.reply("Você não tem dinheiro suficiente!")
+                    } else {
+                        c.deferUpdate()
+                        interaction.editReply({ content: `<@${id}>`, embeds: [embed_rede_compra], ephemeral: true })
+                        await db.add(`itemrede_${id}`, 1)
+                        await db.sub(`bal_${id}`, 1000)
+                    }
+                }
+            })
+        })
+    }
+}

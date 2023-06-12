@@ -1,0 +1,64 @@
+const Discord = require('discord.js');
+const Jimp = require('jimp');
+
+module.exports = {
+    name: 'size',
+    description: 'description',
+    Globally: false,
+    type: Discord.ApplicationCommandType.ChatInput,
+    options: [
+        {
+            name: 'imagem',
+            type: Discord.ApplicationCommandOptionType.Attachment,
+            description: 'description',
+            required: true,
+        },
+        {
+            name: 'largura',
+            type: Discord.ApplicationCommandOptionType.String,
+            description: 'description',
+            required: true,
+        },
+        {
+            name: 'altura',
+            type: Discord.ApplicationCommandOptionType.String,
+            description: 'description',
+            required: true,
+        },
+    ],
+
+    run: async (client, interaction) => {
+
+        const caminhoImagem = interaction.options.getAttachment('imagem').url;
+        const largura = interaction.options.getString('largura');
+        const altura = interaction.options.getString('altura');
+
+
+        async function redimensionarImagem(caminhoImagem, largura, altura) {
+            try {
+                const imagem = await Jimp.read(caminhoImagem);
+                imagem.resize(parseInt(largura), parseInt(altura));
+                const buffer = await imagem.getBufferAsync(Jimp.MIME_GIF);
+                return buffer;
+            } catch (erro) {
+                console.error('Erro ao redimensionar a imagem:', erro);
+                throw erro;
+            }
+        }
+        
+        try {
+            const buffer = await redimensionarImagem(caminhoImagem, largura, altura);
+            const attachment = new Discord.AttachmentBuilder(buffer);
+        
+            interaction.reply({ files: [attachment], content: `Tamanho da imagem \n\n largura : ${largura} \n altura : ${altura}` });
+        } catch (erro) {
+            console.error('Erro ao redimensionar a imagem:', erro);
+            
+        }
+        
+
+      
+    }
+};
+
+

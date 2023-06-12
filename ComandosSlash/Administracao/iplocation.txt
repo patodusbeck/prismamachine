@@ -1,0 +1,25 @@
+const Discord = require("discord.js");
+const axios = require('axios');
+
+module.exports = {
+  name: "procurar-ip",
+  description: "Digite um IP e veja algumas informações sobre ele na internet.",
+  type: Discord.ApplicationCommandType.ChatInput,
+  options: [
+    {
+      name: "ip",
+      description: "Digite o ip, exemplo: 00.000.00.00 total de 9 digitos",
+      type: Discord.ApplicationCommandOptionType.String,
+      required: true,
+    }
+  ],
+
+  run: async (client, interaction) => {
+    let ip = interaction.options.getString("ip");
+    const url = `https://ipinfo.io/${ip}/json/`;
+    axios.get(url).then(response => {
+      const dataString = JSON.stringify(response.data); // Converter o objeto em uma string
+      interaction.reply({ content: dataString, ephemeral: true });
+    });
+  }
+}

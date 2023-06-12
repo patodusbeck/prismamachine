@@ -1,0 +1,9 @@
+
+module.exports = {
+
+ticketManageMenuTitle: 'Escolha um membro para adicionar ao Ticket.',
+ticketManageMenuEmoji: '❔ ',
+ticketMemberAdd: 'foi adicionado ao ticket.',
+ticketMemberRemove: 'foi removido ao ticket.',
+
+}
