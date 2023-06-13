@@ -136,17 +136,36 @@ client.on("guildMemberAdd", (member) => {
   //})
   
 ////////////////////////STATUS BOT - PATO DUS BECK \\\\\\\\\\\\\\\\\\\\\
-  client.on('ready', () => {
-    console.log(`✦ Space Studios - Online!`);
-  
-    client.user.setStatus("idle");
+const status = [
+  {
+    name: 'Adquira seu VIP! ✦',
+    type: Discord.ActivityType.Streaming,
+    url: 'https://www.twitch.tv/discord',
 
-    client.user.setPresence({
-        activities: [{
-            name: "development...",
-        }],
-    });
-  })
+  },
+  {
+    name: '✦ Prisma Roleplay',
+    type: Discord.ActivityType.Streaming,
+    url: 'https://www.twitch.tv/discord',
+  },
+  {
+    name: 'Venha se divertir!',
+    type: Discord.ActivityType.Streaming,
+    url: 'https://www.twitch.tv/discord',
+
+  },
+
+]
+
+client.on('ready', (c) => {
+  console.log(`✦ Prisma Studios </> - Online!`);
+
+  setInterval(() => {
+    let random = Math.floor(Math.random() * status.length);
+    client.user.setActivity(status[random]);
+  }, 5000);
+  client.user.setStatus('idle');
+});
   
 
 
