@@ -286,7 +286,7 @@ client.on('ready', (c) => {
                                             
 
 ////////////////////////WHITELIST V2 - PATO DUS BECK \\\\\\\\\\\\\\\\\\\\\
-client.on('messageCreate', async (message) => {
+/*client.on('messageCreate', async (message) => {
   if (message.content === '!wl') {
     const channel = client.channels.cache.get('1117602157408026624');  /////////iID DO CANAL ONDE A MENSAGEM VAI SER ENVIADA
     const logChannel = client.channels.cache.get('1117602396961509406');   /////////////////ID DO CANAL DE LOG DAS MENSAGENS
@@ -311,10 +311,10 @@ client.on('messageCreate', async (message) => {
 
     const perguntasEmbed = new Discord.EmbedBuilder()
       .setColor('#9c89ad')
-      .setTitle('Perguntas')
-      .setDescription(`Pergunta: ${perguntas[i++]}`);
+      .setTitle('Speed Whitelist')
+      .setDescription(`${perguntas[i++]}`);
 
-    channel.send({ embeds: [perguntasEmbed] });
+    channel.send({ embeds: [perguntasEmbed] }, ephemeral=true);
 
     collector.on('collect', (msg) => {
       respostas.push(msg.content);
@@ -324,7 +324,7 @@ client.on('messageCreate', async (message) => {
         .then(() => {
           if (i < perguntas.length) {
             perguntasEmbed.setDescription(`${perguntas[i++]}`);
-            channel.send({ embeds: [perguntasEmbed] });
+            channel.send({ embeds: [perguntasEmbed], ephemeral: true});
           } else {
             collector.stop();
 
@@ -344,9 +344,13 @@ client.on('messageCreate', async (message) => {
 
     collector.on('end', (collected) => {
       if (collected.size === 0) {
-        channel.send(`**Tempo Esgotado para ${message.author}.**`);
-        logChannel.send(`**Tempo Esgotado para ${message.author}.**`);
+        channel.send(`**Whitelist de ${message.author} cancelada por inatividade.**`);
+        logChannel.send(`**Whitelist de ${message.author} cancelada por inatividade.**`);
       }
     });
   }
 });
+*/
+
+////////////////////////CAPCHAT\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+

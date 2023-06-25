@@ -10,5 +10,8 @@
 - [Axios@1.4.0](https://www.npmjs.com/package/axios)
 - [Quick.db@9.0.10](https://www.npmjs.com/package/quick.db)
 
+## ✦ Support Prisma:
+- [Discord](https://discord.gg/invite/th2ccs5FG3)
+
 
 ## ✦ Bot feito por: PatoDusBeck

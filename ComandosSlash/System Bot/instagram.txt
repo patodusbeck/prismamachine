@@ -1,0 +1,77 @@
+import { ActionRowBuilder, ApplicationCommandOptionType, ButtonBuilder, ButtonStyle, EmbedBuilder } from 'discord.js';
+
+export default {
+    name: 'instagram', description: 'Comando para ver informações de usuários do Instagram', options: [
+        {
+            name: 'username',
+            description: 'Username do usuário do Instagram.',
+            required: true,
+            type: ApplicationCommandOptionType.String
+        }
+    ],
+
+    run: async (client, interaction) => {
+        const getInstagramUser = async (username) => {
+            const userData = await fetch(`https://serenys.xyz/api/instagram/users/${username}`);
+            return userData.json();
+        };
+        try {
+            const userName = interaction.options.getString('username');
+            const serenysAPI = await getInstagramUser(userName);
+
+            const infosEmbed = new EmbedBuilder().setColor('Blurple').setTimestamp()
+            .setAuthor({ name: serenysAPI.account.username, iconURL: serenysAPI.account.avatar_url })
+            .setFooter({ text: 'serenys.xyz'})
+            .setThumbnail(serenysAPI.account.avatar_url)
+            .setFields(
+                {
+                    name: '👥 Usuário:',
+                    value: `${serenysAPI.account.username} \`(${serenysAPI.account.id})\``,
+                    inline: true
+                },
+                {
+                    name: '📊 Seguidores:',
+                    value: `${serenysAPI.stats.followers.formatted} \`(${serenysAPI.stats.followers.total})\``,
+                    inline: true
+                },
+                {
+                    name: '📚 Biografia:',
+                    value: serenysAPI.account.bio ? serenysAPI.account.bio : 'Sem Biografia.',
+                    inline: false
+                },
+                {
+                    name: '⭐ Conta Verificada:',
+                    value: serenysAPI.account.verified ? 'Sim.' : 'Não.',
+                    inline: true
+                },
+                {
+                    name: '🔒 Conta Privada:',
+                    value: serenysAPI.account.private ? 'Sim.' : 'Não.',
+                    inline: true
+                },
+            );
+    
+            if(serenysAPI.account.avatar_url) return interaction.reply({
+                embeds: [infosEmbed],
+                components: [
+                    new ActionRowBuilder().addComponents(
+                        new ButtonBuilder()
+                        .setStyle(ButtonStyle.Link)
+                        .setURL(serenysAPI.account.avatar_url)
+                        .setLabel('Avatar do Usuário')
+                    )
+                ]
+            });
+            
+            interaction.reply({
+                embeds: [infosEmbed]
+            });
+            
+        } catch(err) {
+            console.log(err);
+            interaction.reply({
+                content: `Ocorreu um erro ao executar este comando.`
+            });
+        };
+    },
+};
