@@ -98,7 +98,7 @@ client.on("guildMemberAdd", (member) => {
  ////////////////////////LOG MENSAGEM EDITADA - PATO DUS BECK \\\\\\\\\\\\\\\\\\\\\
   client.on("messageUpdate", async (message, oldMessage) => {
 
-    let setlogsmsgenv = "1079543408663728138";
+    let setlogsmsgenv = "1117602396961509406";
     if (setlogsmsgenv === null) return;
 
     if (message.author.bot) return;
@@ -284,248 +284,69 @@ client.on('ready', (c) => {
                                                   })
 
                                             
-////////////////////////TICKET V3 - PATO DUS BECK \\\\\\\\\\\\\\\\\\\\\
-const discordTranscripts = require('discord-html-transcripts');
-        
-        client.on("interactionCreate", async interaction => {
-           if (interaction.isStringSelectMenu()) {
-              let choice = interaction.values[0]
-              const member = interaction.member
-              const guild = interaction.guild
-            if(choice == 'duvida') {
-                let embedDuvida = new Discord.EmbedBuilder()
-                 .setColor('Random')
-                 .setAuthor({ name: `${interaction.user.tag}`, iconURL: `${interaction.user.displayAvatarURL()}`})
-                 .setDescription(`- **Caso haja alguma dúvida em relação ao Ticket, abra ele e nós vamos retira-la!**`)
-                interaction.reply({ embeds: [embedDuvida], ephemeral: true})
-            } 
-              
-             else if (choice == 'ticket') {     
-                if (interaction.guild.channels.cache.find(ca => ca.name === `ticket-${member.id}`)) {
-                    let canal = interaction.guild.channels.cache.find(ca => ca.name === `ticket-${member.id}`);
+
+////////////////////////WHITELIST V2 - PATO DUS BECK \\\\\\\\\\\\\\\\\\\\\
+client.on('messageCreate', async (message) => {
+  if (message.content === '!wl') {
+    const channel = client.channels.cache.get('1117602157408026624');  /////////iID DO CANAL ONDE A MENSAGEM VAI SER ENVIADA
+    const logChannel = client.channels.cache.get('1117602396961509406');   /////////////////ID DO CANAL DE LOG DAS MENSAGENS
+
+    if (!channel || !logChannel) return;
+
+    const perguntas = [
+      'Qual é o Nome e Sobrenome do seu personagem?',
+      'Qual é sua identificação (ID) ?',
+      'Há quanto tempo você joga RP?',
+      'Está ciente das regras? Cite 5 regras de RP.',
+      'Você está de acordo com nossos Termos?'
+    ];
+
     
-    let jaTem = new Discord.EmbedBuilder()
-    .setDescription(`❌ **Calma! Você já tem um ticket criado em: ${canal}.**`)
-    .setColor('Red')
-                  
-    interaction.reply({ embeds: [jaTem], ephemeral: true })
-                } else {
+    const respostas = [];
 
-                    let cargoTicket = await db.get("cargoModerate.cargoM"); //Cargo dos STAFF's
-                    let CategoriaTicket = await db.get('Categoria.Categoria') //Categoria que o Ticket será criado
-                   
-                    guild.channels.create({
-                      
-                        name: `ticket-${member.id}`,
-                        type: 0, 
-                        parent: `${CategoriaTicket.id}`, //Categoria
-                        topic: interaction.user.id, 
-                        permissionOverwrites: [
-                            {
-                                id: interaction.guild.id,
-                                deny: ["ViewChannel"]
-                            },
-                            {
-                                id: member.id,
-                                allow: ["ViewChannel", "SendMessages", "AddReactions", "AttachFiles"]
-                            },
-                           {
-                                id: cargoTicket.id,  //Cargo STAFF
-                                allow: ["ViewChannel", "SendMessages", "AddReactions", "AttachFiles", "ManageMessages"]
-                            }
-                        ]
-                        
-                      }).then( (ca) => {
-                        interaction.reply({ content: `**💾 - Criando Ticket...**`, ephemeral: true }).then( () => {
-                            setTimeout( () => {
-                                let direciandoaocanal = new Discord.ActionRowBuilder().addComponents(
-                                    new Discord.ButtonBuilder()
-                                    .setLabel(` - Ticket`)
-                                    .setEmoji(`🎫`)
-                                    .setStyle(5)
-                                    .setURL(`https://discord.com/channels/${interaction.guild.id}/${ca.id}`)
-                                )
-                                interaction.editReply({ content: `**💾 - Ticket criado na categoria!**`, ephemeral: true, components: [direciandoaocanal] })
-                            }, 670)
-                        })
+    const filter = (m) => m.author.id === message.author.id;
+    const collector = channel.createMessageCollector({ filter, time: 60000 });
 
-                        let embedCanalTicket = new Discord.EmbedBuilder()
-                        .setTitle("Central de Atendimento do Prisma Roleplay")
-                        .setThumbnail(url="https://cdn.discordapp.com/attachments/1115114682781544458/1115416326668816434/logo_essenze_v1.png")
-                        .setColor("#9c89ad")
-                        .setDescription(`
-                        <:users:1096647887422759024> **Usuário:** ${interaction.user}\n <:Reply:1093347552444825620> ${interaction.user.id}\n📜 **Como podemos ajudá-lo? Nos conte abaixo.**
-                        `)
+    let i = 0;
 
+    const perguntasEmbed = new Discord.EmbedBuilder()
+      .setColor('#9c89ad')
+      .setTitle('Perguntas')
+      .setDescription(`Pergunta: ${perguntas[i++]}`);
 
-                          let FecharTicket = new Discord.ActionRowBuilder()
-                          .addComponents(
-                            new Discord.ButtonBuilder()
-                            .setLabel(`Cancelar & Fechar Ticket`)
-                            .setEmoji(`<:locked:1082462801244729446>`)
-                            .setCustomId('fechar')
-                            .setStyle(Discord.ButtonStyle.Secondary),
-                            //new Discord.ButtonBuilder()
-                            //.setCustomId('addmember')
-                          //  .setLabel('Adicionar Membro')
-                          //  .setStyle(Discord.ButtonStyle.Secondary)
-                          //  .setEmoji('<:mention:1059964035442937886>'),
-                        )                
-                          
-                          ca.send({ embeds: [embedCanalTicket], components: [FecharTicket] })
-                       })                 
-                }
-                
-            }
-        } 
-        if(interaction.isButton) {
-          if(interaction.customId === "fechar") {
-            const modalTicket = new Discord.ModalBuilder()
-                  .setCustomId('modal_ticket')
-                  .setTitle(`Cancelamento do Ticket`)
-                const resposta1 = new Discord.TextInputBuilder()
-                  .setCustomId('resposta')
-                  .setLabel('Diga-nos a razão de fechar o ticket:')
-                  .setStyle(Discord.TextInputStyle.Paragraph)
-          
-                const firstActionRow = new Discord.ActionRowBuilder().addComponents(resposta1);
-                modalTicket.addComponents(firstActionRow)
-                await interaction.showModal(modalTicket);
-          } else if(interaction.customId === "lock") {
-            const cliente = interaction.guild.members.cache.get(
-                interaction.channel.topic.slice(0, 18)
-            );
-             let cargoTicket2 = await db.get("cargoModerate.cargoM");          
-                if (!interaction.member.roles.cache.some(role => role.id == cargoTicket2.id)) {
-                    interaction.reply({ content: `**❌ - Apenas STAFF's podem selecionar esta opção!**`, ephemeral: true })
-                } else {
-                    interaction.channel.permissionOverwrites.edit(cliente.user, {
-                        ViewChannel: false
-                      })
-                  interaction.reply(`**🔐 - Canal trancado, permissão de visualizar canal fechada para ${cliente.user}!**`)
-           
-                }            
-          }//else if(interaction.customId === "addmember") {
-//
-          //  const menu = new Discord.UserSelectMenuBuilder()
-          //  .setCustomId('addmember')
-         //   .setPlaceholder(configg.ticketManageMenuEmoji + configg.ticketManageMenuTitle)
-         //   .setMinValues(1)
-         //   .setMaxValues(1)
-        //    return interaction.reply({components: [new Discord.ActionRowBuilder().addComponents(menu)], ephemeral: true}).catch(error => {return});
+    channel.send({ embeds: [perguntasEmbed] });
 
-        //  }
-        };
-        if (!interaction.isModalSubmit()) return;
-         if (interaction.customId === 'modal_ticket') {         
-          const respostaFinal = interaction.fields.getTextInputValue('resposta');
-      
-          interaction.reply({
-            content: `**✅ - Resposta enviada, canal será deletado em 3s**`, ephemeral: true
-          }).then ( (aviso) => {
-             setTimeout( () => {
-                interaction.editReply({
-                    content: `**✅ - Resposta enviada, canal será deletado em 2s**`, ephemeral: true
-                }, 1000).then ( (aviso1) => {
-                    setTimeout( () => {
-                       interaction.editReply({
-                            content: `**✅ - Resposta enviada, canal será deletado em 1s**`, ephemeral: true
-                        })
-                    }, 1000);
-                 })
-                  .then( () => {
-                    setTimeout(async () => {
-                        const cliente = interaction.guild.members.cache.get(
-                            interaction.channel.topic.slice(0, 18)
-                        );
+    collector.on('collect', (msg) => {
+      respostas.push(msg.content);
 
-                        let channel = interaction.channel;
-                        const attachment = await discordTranscripts.createTranscript(channel, {
-                           fileName: `${channel.name}.html`,
-                         });
-                        
-                        interaction.channel.delete();
-                        const channelDeleted = interaction.channel.name;
+      // Remover mensagens anteriores
+      channel.bulkDelete(collector.collected.map((m) => m.id))
+        .then(() => {
+          if (i < perguntas.length) {
+            perguntasEmbed.setDescription(`${perguntas[i++]}`);
+            channel.send({ embeds: [perguntasEmbed] });
+          } else {
+            collector.stop();
 
-                        let embedLog = new Discord.EmbedBuilder()
-                        
-                         .setAuthor({ name: `${cliente.user.username}`, iconURL: `${cliente.user.displayAvatarURL()}`})
-                         .setColor('Red')
-                         .setTitle(`${channelDeleted}`)
-                         .setDescription(`*Ticket fechado, informações:* \n**(Transcripts Anexados)**\n`)
-                         .addFields(
-                            {
-                                name: `🆔 - ID de quem fechou:`,
-                                value: `\`\`\`${interaction.user.id}\`\`\``,
-                                inline: true,
-                            },
-                            {
-                                name: `🆔 - ID de quem abriu:`,
-                                value: `\`\`\`${cliente.id}\`\`\``,
-                                inline: true,
-                            },
-                            {
-                                name: `💬 - Quem fechou:`,
-                                value: `${interaction.user}`,
-                                inline: false,
-                            },
-                            {
-                                name: `💬 - Quem abriu:`,
-                                value: `${cliente.user}`,
-                                inline: false,
-                            },
-                            {
-                                name: `🎫 - Ticket:`,
-                                value: `${channelDeleted}`,
-                                inline: true,
-                            },
-                            {
-                               name: '📕 - Motivo do Fechamento:',
-                               value: `\`\`\`${respostaFinal}\`\`\``,
-                               inline: false,
-                            },
-                         )
-                         .setTimestamp()
-                         .setFooter({ text: `Ticket fechado por: ${interaction.user.tag}`, iconURL: `${interaction.user.displayAvatarURL()}`})
-                         .setThumbnail(`${cliente.user.displayAvatarURL()}`)
+            const respostasEmbed = new Discord.EmbedBuilder()
+              .setColor('#9c89ad')
+              .setTitle(`Respostas de ${message.author.username}`)
+              .setDescription(respostas.join('\n'));
 
-                         let embedLogUser = new Discord.EmbedBuilder()
-                        
-                         .setColor('#9c89ad')
-                         .setTitle(`Ticket Fechado!`)
-                         .setThumbnail(url="https://cdn.discordapp.com/attachments/1115114682781544458/1115416326668816434/logo_essenze_v1.png")
-                         .setDescription(`Olá, ${cliente.user.username}. Seu ticket foi fechado!`)
-                         .addFields(
-                            {
-                                name: `💬 - Quem fechou:`,
-                                value: `${interaction.user}`,
-                                inline: false,
-                            },
-                            {
-                                name: `💬 - Quem abriu:`,
-                                value: `${cliente.user}`,
-                                inline: false,
-                            },
-                            {
-                               name: '📕 - Motivo do Fechamento:',
-                               value: `\`\`\`${respostaFinal}\`\`\``,
-                               inline: false,
-                            },
-                         )
-                         .setTimestamp()
-                         .setThumbnail(`${cliente.user.displayAvatarURL()}`)
-                         .setFooter({ text: `Ticket fechado por: ${interaction.user.tag}`, iconURL: `${interaction.user.displayAvatarURL()}`})
-
-                         let canalLogsT = await db.get('channelLogTicket.channel')
-
-
-                         cliente.user.send({ embeds: [embedLogUser] })
-                         await  interaction.guild.channels.cache.get(`${canalLogsT.id}`).send({ content: `\`💾 - Transcript ⤵\``, files: [attachment] ,embeds: [embedLog] })
-                    }, 1000);
-                 });
-             });
-          });
-        };
+            channel.send({ embeds: [respostasEmbed] });
+            logChannel.send({ embeds: [respostasEmbed] });
+          }
+        })
+        .catch((error) => {
+          console.error('Erro ao excluir mensagens:', error);
+        });
     });
-    
-////////////////////////TICKET V3 - PATO DUS BECK \\\\\\\\\\\\\\\\\\\\\
+
+    collector.on('end', (collected) => {
+      if (collected.size === 0) {
+        channel.send(`**Tempo Esgotado para ${message.author}.**`);
+        logChannel.send(`**Tempo Esgotado para ${message.author}.**`);
+      }
+    });
+  }
+});
