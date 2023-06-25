@@ -20,7 +20,7 @@ client.slashCommands.set(arquivo?.name, arquivo);
   });
 });
 
-console.log(`✅ Sistema de Liberação de Acesso iniciado com sucesso! By: Space Development ✦`)
+console.log(`✅ Sistema de Liberação de Acesso iniciado com sucesso! By: Prisma Studios </> ✦`)
 
 client.on("ready", () => {
 
