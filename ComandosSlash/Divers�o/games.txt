@@ -231,7 +231,7 @@ module.exports = {
         const result = Math.floor(Math.random() * Math.min(lados)) + 1;
 
         const successEmbed = new Discord.EmbedBuilder()
-          .setColor('#8C9FFF')
+          .setColor(main.color)
           .setDescription(
             `🎲 | Você rolou um dado com a numeração ${lados} e conseguiu ${result}!`
           );
@@ -248,7 +248,7 @@ module.exports = {
         let embed = new Discord.EmbedBuilder()
           .setTitle('Cara ou Coroa?')
           .setDescription(outcome)
-          .setColor('#8C9FFF')
+          .setColor(main.color)
           .setTimestamp();
 
         interaction.reply({ embeds: [embed] });
@@ -258,7 +258,7 @@ module.exports = {
           message: interaction,
           embed: {
             title: 'Jogo da Cobrinha',
-            color: '#8C9FFF',
+            color: main.color,
             OverTitle: "Fim de Jogo!",
           },
           snake: { head: '🟢', body: '🟩', tail: '🟢' },
@@ -278,7 +278,7 @@ module.exports = {
           isSlashGame: true,
           embed: {
             title: 'Mina de bombas',
-            color: "#8C9FFF",
+            color: main.color,
             description: 'Clique em algum botão para jogar.'
           },
           emojis: { flag: '🚩', mine: '💣' },
@@ -303,7 +303,7 @@ module.exports = {
             isSlashGame: true,
             embed: {
               title: '``comida Memory``',
-              color: '#8C9FFF',
+              color: main.color,
               description: 'Clique nos botões abaixo para encontrar os pares!',
             },
             timeoutTime: 6000,
@@ -319,7 +319,7 @@ module.exports = {
             isSlashGame: true,
             embed: {
               title: '``bandeira Memory``',
-              color: '#8C9FFF',
+              color: main.color,
               description: 'Clique nos botões abaixo para encontrar os pares!',
             },
             timeoutTime: 6000,
@@ -335,7 +335,7 @@ module.exports = {
             isSlashGame: true,
             embed: {
               title: '``animals Memory``',
-              color: '#8C9FFF',
+              color: main.color,
               description: 'Clique nos botões abaixo para encontrar os pares!',
             },
             timeoutTime: 6000,
@@ -351,7 +351,7 @@ module.exports = {
             isSlashGame: true,
             embed: {
               title: '``sport Memory``',
-              color: '#8C9FFF',
+              color: main.color,
               description: 'Clique nos botões abaixo para encontrar os pares!',
             },
             timeoutTime: 6000,
@@ -367,7 +367,7 @@ module.exports = {
             isSlashGame: true,
             embed: {
               title: '``cars Memory``',
-              color: '#8C9FFF',
+              color: main.color,
               description: 'Clique nos botões abaixo para encontrar os pares!',
             },
             timeoutTime: 6000,
@@ -429,7 +429,7 @@ module.exports = {
 
         const embeds1 = new Discord.EmbedBuilder()
 
-          .setColor('#8C9FFF')
+          .setColor(main.color)
 
           .setTimestamp()
 
@@ -455,7 +455,7 @@ module.exports = {
           isSlashGame: true,
           embed: {
             title: 'Encontrar Emoji',
-            color: '#8C9FFF',
+            color: main.color,
             description: 'Lembre-se dos emojis do quadro abaixo.',
             findDescription: 'Encontra o emoji {emoji} antes que o tempo acabe.'
           },
@@ -477,7 +477,7 @@ module.exports = {
           isSlashGame: true,
           embed: {
             title: '2048',
-            color: '#8C9FFF'
+            color: main.color
           },
           emojis: {
             up: '⬆️',
@@ -502,7 +502,7 @@ module.exports = {
           embed: {
             title: 'Jogo Connect4',
             statusTitle: 'Status',
-            color: '#8C9FFF'
+            color: main.color
           },
           emojis: {
             board: '⚪',
@@ -527,7 +527,7 @@ module.exports = {
           isSlashGame: true,
           embed: {
             title: 'Flood',
-            color: '#8C9FFF',
+            color: main.color,
           },
           difficulty: 8,
           timeoutTime: 60000,
@@ -546,7 +546,7 @@ module.exports = {
           isSlashGame: true,
           embed: {
             title: 'Quem é esse Pokémon?',
-            color: '#8C9FFF'
+            color: main.color
           },
           timeoutTime: 60000,
           winMessage: 'Você adivinhou! O Pokémon ara __**{pokemon}**__.',
@@ -565,7 +565,7 @@ module.exports = {
           isSlashGame: true,
           embed: {
             title: 'Hangman',
-            color: '#8C9FFF'
+            color: main.color
           },
           hangman: { hat: '🎩', head: '😟', shirt: '👕', pants: '🩳', boots: '👞👞' },
           customWord: randomWord,
@@ -584,7 +584,7 @@ module.exports = {
           isSlashGame: true,
           embed: {
             title: 'Slot Machine',
-            color: '#8C9FFF'
+            color: main.color
           },
           slots: ['🍇', '🍊', '🍋', '🍌']
         });
@@ -599,7 +599,7 @@ module.exports = {
           opponent: player,
           embed: {
             title: 'Tic Tac Toe',
-            color: '#8C9FFF',
+            color: main.color,
             statusTitle: 'Status',
             overTitle: 'Game Over'
           },
@@ -627,7 +627,7 @@ module.exports = {
           isSlashGame: true,
           embed: {
             title: 'Fast Type',
-            color: '#8C9FFF',
+            color: main.color,
             description: 'Você tem {time} segundos para digitar a frase abaixo.'
           },
           timeoutTime: 60000,
@@ -649,7 +649,7 @@ module.exports = {
           isSlashGame: true,
           embed: {
             title: 'Wordle',
-            color: '#8C9FFF',
+            color: main.color,
           },
           customWord: null,
           timeoutTime: 60000,
@@ -666,7 +666,7 @@ module.exports = {
           isSlashGame: true,
           embed: {
             title: 'Trivia',
-            color: '#8C9FFF',
+            color: main.color,
             description: 'Você tem 60 segundos para adivinhar a resposta.'
           },
           timeoutTime: 60000,

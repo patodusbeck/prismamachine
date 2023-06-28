@@ -1,4 +1,5 @@
-const fs = require("fs")
+const fs = require("fs");
+const main = require("../../main");
 
 module.exports = async (client) => {
 
@@ -24,7 +25,7 @@ console.log(`✅ Sistema de Liberação de Acesso iniciado com sucesso! By: Pris
 
 client.on("ready", () => {
 
-  const guild = client.guilds.cache.get("1074041160865161266")
+  const guild = client.guilds.cache.get(main.GuildID)
   
   if(!guild) {
     console.log("O servidor específicado para registrar as slashs é inválido.", "Desligando...")

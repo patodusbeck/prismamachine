@@ -1,4 +1,5 @@
 const Discord = require("discord.js")
+const main = require('../../main')
 
 module.exports = {
   name: "kick", // Coloque o nome do comando
@@ -32,11 +33,11 @@ module.exports = {
         if (!motivo) motivo = "Não informado"
 
         let embed = new Discord.EmbedBuilder()
-        .setColor("#9c89ad")
+        .setColor(main.color)
         .setDescription(`O usuário ${membro} foi expulso com sucesso!\n\n> Motivo: \`${motivo}\`.`)
 
         let embed_erro = new Discord.EmbedBuilder()
-        .setColor("#9c89ad")
+        .setColor(main.color)
         .setDescription(`O usuário ${membro} não foi expulso do servidor!\nHouve um erro na hora de executar este comando, por favor tente novamente.`);
 
         membro.kick(motivo).then( () => {

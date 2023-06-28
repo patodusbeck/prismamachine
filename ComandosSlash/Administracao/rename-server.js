@@ -1,4 +1,5 @@
 const Discord = require("discord.js");
+const main = require('../../main')
 
 module.exports = {
   name: "rename-server",
@@ -25,7 +26,7 @@ module.exports = {
     } else {
       let embed = new Discord.EmbedBuilder()
         .setTitle("Servidor Renomeado!")
-        .setColor("#8C9FFF")
+        .setColor(main.color)
         .setThumbnail(interaction.guild.iconURL())
         .setTimestamp()
         .addFields(

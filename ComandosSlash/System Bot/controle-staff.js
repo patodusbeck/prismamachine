@@ -1,4 +1,5 @@
 const Discord = require("discord.js");
+const main = require('../../main')
 
 module.exports = {
   name: "controle",//nome do comando
@@ -56,13 +57,13 @@ module.exports = {
     let staff = interaction.options.getUser("staff");
     let ac = interaction.options.getString("ocorrido");
     let cargo = interaction.options.getRole("cargo");
-    let canal = interaction.guild.channels.cache.get("1079543408663728138");//Coloque o id do canal onde vai ser enviado o staff-log
+    let canal = interaction.guild.channels.cache.get(main.rgcontrol);//Coloque o id do canal onde vai ser enviado o staff-log
     let title = "Controle Staff - Registro de Log";
 
     if(ac === "sair"){
         const embed = new Discord.EmbedBuilder()
         .setTitle(title)
-        .setColor("#9c89ad")
+        .setColor(main.color)
         .addFields(
           { name: `⚙ | Nome:`, value: `${staff}` },
           { name: `⚙ | Ocorrido:`, value: `\`\`\`Saiu da Equipe Prisma\`\`\`` },
@@ -79,7 +80,7 @@ module.exports = {
     }else if(ac === "promvido"){
         const embed = new Discord.EmbedBuilder()
         .setTitle(title)
-        .setColor("#9c89ad")
+        .setColor(main.color)
         .addFields(
           { name: `⚙ | Staff:`, value: `${staff}` },
           { name: `⚙ | Ocorrido:`, value: `\`\`\`Promovido de Cargo\`\`\`` },
@@ -96,7 +97,7 @@ module.exports = {
     }else if(ac === "rebaixado"){
         const embed = new Discord.EmbedBuilder()
         .setTitle(title)
-        .setColor("#9c89ad")
+        .setColor(main.color)
         .addFields(
           { name: `⚙ | Staff:`, value: `${staff}` },
           { name: `⚙ | Ocorrido:`, value: `\`\`\`Rebaixado de Cargo\`\`\`` },
@@ -113,7 +114,7 @@ module.exports = {
     }else if(ac === "entrou"){
         const embed = new Discord.EmbedBuilder()
         .setTitle(title)
-        .setColor("#9c89ad")
+        .setColor(main.color)
         .addFields(
           { name: `⚙ | Nome:`, value: `${staff}` },
           { name: `⚙ | Ocorrido:`, value: `\`\`\`Entrou para a Equipe Prisma\`\`\`` },
@@ -130,7 +131,7 @@ module.exports = {
       }else if(ac === "punicao"){
         const embed = new Discord.EmbedBuilder()
         .setTitle(title)
-        .setColor("#9c89ad")
+        .setColor(main.color)
         .addFields(
           { name: `⚙ | Staff:`, value: `${staff}` },
           { name: `⚙ | Ocorrido:`, value: `\`\`\`Punição\`\`\`` },

@@ -1,5 +1,6 @@
 const Discord = require("discord.js")
 const os = require("os");
+const main = require('../../main')
 
 module.exports = {
   name: "botinfo", // Coloque o nome do comando
@@ -17,11 +18,11 @@ module.exports = {
       const osRamTotal = formatMemory(os.totalmem()).value + formatMemory(os.totalmem()).unit;
       const osRamUsada = formatMemory(os.totalmem() - os.freemem()).value + formatMemory(os.totalmem() - os.freemem()).unit;
 
-    let dono = "997607248455016488"; // Coloque seu ID
+    let dono = main.developer; // Coloque seu ID
     let bot = client.user.tag;
     let avatar_bot = client.user.displayAvatarURL({ dynamic: true });
-    let linguagem = "JavaScript";
-    let livraria = "Discord.Js";
+    let linguagem = main.ling;
+    let livraria = main.library;
     let ping = client.ws.ping;
 
       await interaction.reply({
@@ -38,7 +39,7 @@ module.exports = {
                 { name: `🏛️ | Arquitetura do CPU:`, value: `\`\`\`${osCpuArquitetura}\`\`\`` },
                 { name: `💾 | Memória RAM:`, value: `\`\`\`${osRamUsada}/${osRamTotal}\`\`\`` }
             )
-              .setColor(`#9c89ad`)
+              .setColor(main.color)
           ],
           ephemeral: true
       });

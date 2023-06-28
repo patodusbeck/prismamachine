@@ -45,7 +45,7 @@ module.exports = {
 
                 const fun = new Discord.EmbedBuilder()
                 .setTitle('Tutorial')
-                  .setColor("#9c89ad")
+                  .setColor("main.color")
                   .setDescription(`
                   Bom, vou explicar basicamente como utilizar os comandos e também como
                   
@@ -58,7 +58,7 @@ module.exports = {
 
                 const adm = new Discord.EmbedBuilder()
                 .setTitle('Termos de Uso do Prisma Roleplay <:anuncio:1076903591559835708>')
-                  .setColor("#9c89ad")
+                  .setColor("main.color")
                   .setDescription(`
                 
                   > **1. Responsabilidades do jogador <:livro:1076911723665174549>**
@@ -106,7 +106,7 @@ module.exports = {
 
                 const music = new Discord.EmbedBuilder()
                 .setTitle('Regras Gerais Brasil Cidade Carioca <:anuncio:1076903591559835708>')
-                             .setColor("#9c89ad")
+                             .setColor("main.color")
                              .setDescription(`
                              As regras do Brasil Cidade Carioca são estabelecidas para garantir que os jogadores mantenham um ambiente de jogo **saudável e justo**. As regras definem comportamentos **inaceitáveis** e as punições correspondentes para jogadores que as violarem.
 

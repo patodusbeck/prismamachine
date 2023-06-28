@@ -1,0 +1,32 @@
+const Discord = require("discord.js");
+    //Créditos: frança //Créditos: frança //Créditos: frança //Créditos: frança //Créditos: frança //Créditos: frança //Créditos: frança
+
+
+module.exports = {
+    name: "bans", // frança
+    aliases: [""], // frança
+
+    run: async(client, message, args) => {
+
+    const fetchBans = await message.guild.bans.fetch();
+    
+    let bansSize = (await fetchBans).size;
+
+    let bannedMembers =(await fetchBans).map((member) => `🔨 ${member.user.tag} ID: ${member.user.id}`).join('\n')
+    if (!bannedMembers) bannedMembers = "Nenhum banimento.";
+
+    const pato = new Discord.EmbedBuilder()
+
+    .setAuthor({ name: `Lista de Banidos`, iconURL: message.guild.iconURL()})
+    .setDescription(`\`${bannedMembers}, ${bansSize}\``)
+   /* .addFields(
+        {
+            name: `${bansSize}`,
+            value: `Membros Banidos`
+        },
+     )
+   */
+
+    message.reply({ embeds : [pato] })
+    }
+}

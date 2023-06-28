@@ -1,4 +1,5 @@
 const Discord = require("discord.js")
+const main = require('../../main')
 
 module.exports = {
   name: "anunciar", // Coloque o nome do comando
@@ -39,7 +40,7 @@ module.exports = {
         let embed = new Discord.EmbedBuilder()
         .setTitle(titulo)
         .setDescription(`${desc}`)
-        .setColor("#9c89ad");
+        .setColor(main.color);
 
         chat.send({ embeds: [embed] }).then( () => { 
             interaction.reply(`✅ Seu anúncio foi enviado em ${chat} com sucesso.`)

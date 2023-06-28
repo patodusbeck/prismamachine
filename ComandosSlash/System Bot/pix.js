@@ -1,6 +1,7 @@
 const Discord = require('discord.js');
 const { PIX } = require('gpix/dist');
 const Canvas = require('canvas');
+const main = require('../../main')
 
 module.exports = {
     name: 'pix',
@@ -75,7 +76,7 @@ module.exports = {
                 { name: '<:Dinheiro:1016870214324977674> Valor:', value: `R$${valor.toFixed(2)}` },
             )
             //.setDescription(`Item: ${desc}`)
-            .setColor("#9c89ad");
+            .setColor(main.color);
 
         await interaction.channel.send({
             embeds: [embed],

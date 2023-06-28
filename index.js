@@ -1,3 +1,4 @@
+const main = require('./main.js')
 ////////////////////////ANTI CRASH - PATO DUS BECK \\\\\\\\\\\\\\\\\\\\\
 
 const process = require('node:process');
@@ -50,22 +51,15 @@ require("./src/Handler")(client);
 
 
 
-client.login(config.BotToken);
-
-//db.connect(); 
-//SexoDB
-//const sexodb = require("sexodb")
-
-///client.dbUsers = new sexodb("./src/Database/users.json")
-
+client.login(main.BotToken);
 
 ////////////////////////MENSAGEM DE ENTRADA - PATO DUS BECK \\\\\\\\\\\\\\\\\\\\\
 client.on("guildMemberAdd", (member) => {
-    let canal_logs = "1114964338738991127"; //canal logs - id channel
+    let canal_logs = main.wellog;
     if (!canal_logs) return;
   
     let embed = new Discord.EmbedBuilder()
-    .setColor("#9c89ad")
+    .setColor(main.color)
     .setThumbnail(member.user.displayAvatarURL({ dynamic: true }))
     .setTitle("👋 Boas Vindas!")
     .setDescription(`> Olá ${member}!\nSeja Bem-Vindo(a) ao \`${member.guild.name}\`!\nAtualmente estamos com \`${member.guild.memberCount}\` membros.`);
@@ -74,7 +68,7 @@ client.on("guildMemberAdd", (member) => {
   })
 ////////////////////////MENSAGEM DE SAÍDA - PATO DUS BECK \\\\\\\\\\\\\\\\\\\\\
   client.on('guildMemberRemove', member => {
-    const channel = member.guild.channels.cache.find(ch => ch.name === '🔔・log-discord'); // nome do canal de logs
+    const channel = member.guild.channels.cache.find(ch => ch.name === main.levlog); // nome do canal de logs
     if (!channel) {
       return console.log(`Canal de logs não encontrado para o servidor ${member.guild.name}.`);
     }
@@ -98,7 +92,7 @@ client.on("guildMemberAdd", (member) => {
  ////////////////////////LOG MENSAGEM EDITADA - PATO DUS BECK \\\\\\\\\\\\\\\\\\\\\
   client.on("messageUpdate", async (message, oldMessage) => {
 
-    let setlogsmsgenv = "1117602396961509406";
+    let setlogsmsgenv = main.medit;
     if (setlogsmsgenv === null) return;
 
     if (message.author.bot) return;
@@ -109,7 +103,7 @@ client.on("guildMemberAdd", (member) => {
 
     let embed = new Discord.EmbedBuilder()
         .setTitle(`📝 Mensagem editada`)
-        .setColor("9c89ad")
+        .setColor(main.color)
         .addFields(
           { name: 'Autor da Mensagem', value: `${message.author}` },
           { name: 'Canal', value: `${msgchannel}` },
@@ -138,18 +132,18 @@ client.on("guildMemberAdd", (member) => {
 ////////////////////////STATUS BOT - PATO DUS BECK \\\\\\\\\\\\\\\\\\\\\
 const status = [
   {
-    name: 'Adquira seu VIP! ✦',
+    name: main.one,
     type: Discord.ActivityType.Streaming,
     url: 'https://www.twitch.tv/discord',
 
   },
   {
-    name: '✦ Prisma Roleplay',
+    name: main.two,
     type: Discord.ActivityType.Streaming,
     url: 'https://www.twitch.tv/discord',
   },
   {
-    name: 'Venha se divertir!',
+    name: main.three,
     type: Discord.ActivityType.Streaming,
     url: 'https://www.twitch.tv/discord',
 
@@ -183,40 +177,40 @@ client.on('ready', (c) => {
                                                   
                                                         const pergunta1 = new Discord.TextInputBuilder()
                                                         .setCustomId("pergunta1") // ID da pergunta
-                                                        .setLabel("Qual é o Nome e Sobrenome do seu personagem?") 
+                                                        .setLabel(main.qone) 
                                                         .setMaxLength(20) 
-                                                        .setPlaceholder("Nome | Sobrenome") // Mensagem que fica antes de escrever a resposta
+                                                        .setPlaceholder(main.hone) // Mensagem que fica antes de escrever a resposta
                                                         .setRequired(true) 
                                                         .setStyle(Discord.TextInputStyle.Short) //(Short | Paragraph)
                                                   
                                                         const pergunta2 = new Discord.TextInputBuilder()
                                                         .setCustomId("pergunta2") // ID da pergunta
-                                                        .setLabel("Qual é sua identificação (ID) ?") 
+                                                        .setLabel(main.qtwo) 
                                                         .setMaxLength(999) 
-                                                        .setPlaceholder("Envie seu ID") 
+                                                        .setPlaceholder(main.htwo) 
                                                         .setStyle(Discord.TextInputStyle.Short) 
                                                         .setRequired(true)
                                                   
                                                         const pergunta3 = new Discord.TextInputBuilder()
                                                         .setCustomId("pergunta3") // ID da pergunta
-                                                        .setLabel("Há quanto tempo você joga RP?") 
-                                                        .setPlaceholder("Meses/anos/semanas") 
+                                                        .setLabel(main.qthree) 
+                                                        .setPlaceholder(main.hthree) 
                                                         .setStyle(Discord.TextInputStyle.Short) 
                                                         .setRequired(true)
 
                                                         const pergunta4 = new Discord.TextInputBuilder()
                                                         .setCustomId("pergunta4") // ID da pergunta
-                                                        .setLabel("Está ciente das regras? Cite 5 regras de RP.") 
+                                                        .setLabel(main.qfour) 
                                                         .setMaxLength(1000)
-                                                        .setPlaceholder("Caso não tenha lido ainda, recomendamos ler!") 
+                                                        .setPlaceholder(main.hfour) 
                                                         .setStyle(Discord.TextInputStyle.Paragraph) 
                                                         .setRequired(true)
 
                                                         const pergunta5 = new Discord.TextInputBuilder()
                                                         .setCustomId("pergunta5") // ID da pergunta
-                                                        .setLabel("Você está de acordo com nossos Termos?") 
+                                                        .setLabel(main.qfive) 
                                                         .setMaxLength(1000)
-                                                        .setPlaceholder("Responda com Sim ou Não.") 
+                                                        .setPlaceholder(main.hfive) 
                                                         .setStyle(Discord.TextInputStyle.Short)
                                                         .setRequired(true)
                                                   
@@ -245,7 +239,7 @@ client.on('ready', (c) => {
                                                         if (!resposta5) resposta3 = "Não informado."
                                                   
                                                         let embed = new Discord.EmbedBuilder()
-                                                        .setColor("#9c89ad")
+                                                        .setColor(main.color)
                                                         .setTitle("Whitelist Recebida")
                                                         .setThumbnail(interaction.user.displayAvatarURL({ dynamic: true }))
                                                         .setDescription(`**Usuario:** ${interaction.user}\n**ID:** \`${interaction.user.id}\``)
@@ -310,7 +304,7 @@ client.on('ready', (c) => {
     let i = 0;
 
     const perguntasEmbed = new Discord.EmbedBuilder()
-      .setColor('#9c89ad')
+      .setColor(main.color)
       .setTitle('Speed Whitelist')
       .setDescription(`${perguntas[i++]}`);
 
@@ -329,7 +323,7 @@ client.on('ready', (c) => {
             collector.stop();
 
             const respostasEmbed = new Discord.EmbedBuilder()
-              .setColor('#9c89ad')
+              .setColor(main.color)
               .setTitle(`Respostas de ${message.author.username}`)
               .setDescription(respostas.join('\n'));
 
@@ -352,5 +346,44 @@ client.on('ready', (c) => {
 });
 */
 
-////////////////////////CAPCHAT\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+////////////////////////Message Secret\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
+client.on('messageCreate', async (message) => {
+  if (message.content === main.secret) {
+    const channel = client.channels.cache.get(main.clogsecret);  /////////iID DO CANAL ONDE A MENSAGEM VAI SER ENVIADA
+
+    const moment = require('moment-timezone');
+
+    moment.tz.setDefault('America/Sao_Paulo');
+
+    if (!channel) return;
+
+    const date = moment();
+
+    
+    const weekdays = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'];
+
+    
+    
+
+    const botv2 = new Discord.EmbedBuilder()
+          .setThumbnail('https://media.discordapp.net/attachments/1115114682781544458/1115416326668816434/logo_essenze_v1.png?')
+          .setColor(main.color)
+          .setImage('https://media.discordapp.net/attachments/1115114682781544458/1116580426258055179/background.jpg?')
+          .setDescription('# The Real Dus Beck 🍁\n## Command Secret - Discord Bot Version 2\n\n ### Developed by Pato dus beck')
+          .addFields(
+        { name: 'Dia Semana/Mês', value: `\`${weekdays[date.day()]},  ${date.format('DD/MM/YYYY')}\`` },
+        { name: 'Hora', value: `\`${date.format('HH:mm:ss')}\`` },
+        { name: 'Painel Square Cloud', value: '[Square Cloud](https://squarecloud.app/dashboard)' },
+        { name: 'GitHub', value: '[Repositories](https://github.com/patodusbeck?tab=repositories)' },
+        { name: 'Rich Presents', value: '[1082088345984827436](https://discord.dev/)' },
+        { name: 'Prisma Studios', value: '[Invite](https://discord.gg/invite/th2ccs5FG3)'},
+        { name: 'Arq. Principal Bot', value: '[Index.js](https://discord.com/channels/1074041160865161266/1117656556050337873)'},
+        { name: 'Arq. Principal Site', value: '[.html](https://discord.com/channels/1074041160865161266/1117656588522627112)'},
+        { name: 'Playlist', value: '[Spotify ./☯](https://open.spotify.com/playlist/6Of0jO8YEeWeCWXmkQWouF?si=2b9c615285a847fe)' },
+    )
+
+    channel.send({ embeds: [botv2] }, ephemeral=true);
+
+  }
+});

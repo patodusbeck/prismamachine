@@ -1,4 +1,5 @@
 const Discord = require("discord.js")
+const main = require('../../main')
 
 module.exports = {
   name: "app", // Coloque o nome do comando
@@ -21,7 +22,7 @@ module.exports = {
         let user = interaction.options.getUser("usuário");
 
         let embed = new Discord.EmbedBuilder()
-        .setColor("#9c89ad")
+        .setColor(main.color)
         .setDescription(`**<a:httpsdiscordggmdCpia:1004093094859386920> Olá! Você passou na Whitelist do Prisma Roleplay!**
 
         <:Foguete:1051498241998471218> **Poderia dar uma olhada em nossos produtos?**
@@ -35,13 +36,13 @@ module.exports = {
 
         user.send({ embeds: [embed] }).then( () => {
             let emb = new Discord.EmbedBuilder()
-            .setColor("#9c89ad")
+            .setColor(main.color)
             .setDescription(`✅ Olá ${interaction.user}, o jogador ${user} foi aprovado em nossa whitelist com sucesso!`);
 
             interaction.reply({ embeds: [emb] })
         }).catch(e => {
             let emb = new Discord.EmbedBuilder()
-            .setColor("#9c89ad")
+            .setColor(main.color)
             .setDescription(`❌ Olá ${interaction.user}, a mensagem não foi enviada para ${user}, pois o usuário está com a DM fechada!`);
 
             interaction.reply({ embeds: [emb] })

@@ -1,6 +1,7 @@
 const Discord = require("discord.js")
 const { QuickDB } = require("quick.db")
 const db = new QuickDB()
+const main = require('../../main')
 
 module.exports = {
   name: "access", // Coloque o nome do comando
@@ -38,14 +39,14 @@ module.exports = {
             await db.set(`canal_logs_${interaction.guild.id}`, canal_logs.id)
 
             let embed = new Discord.EmbedBuilder()
-            .setDescription("Random")
-            .setColor('#9c89ad')
+            .setDescription(main.color)
+            .setColor(main.color)
             .setTitle("Modals configurados!")
             .setDescription(`> Canal do Formulário: ${canal_formulario}.\n> Canal de Logs: ${canal_logs}.`)
 
             interaction.reply({ embeds: [embed], ephemeral: true }).then( () => {
                 let embed_formulario = new Discord.EmbedBuilder()
-                .setColor("#9c89ad")
+                .setColor(main.color)
                 .setThumbnail(interaction.guild.iconURL({ dynamic: true }))
                 .setImage("https://media.discordapp.net/attachments/1043682567959879740/1068952798907089116/Captura_de_Tela_1502.png")
                 .setDescription(`<:Foguete:1051498241998471218> • Seja bem-vindo(a) ao **Prisma Roleplay**\n- *Esperamos que sua estadia seja extensa e agradável*.\n\n <:serverrules:1115024947480363008> **|** Para ter acesso completo ao nosso discord, é necessário **concordar com nossos termos** e **liberar seu acesso** clicando no **botão verde** abaixo.`);
@@ -54,7 +55,7 @@ module.exports = {
                     new Discord.ButtonBuilder()
                     .setCustomId("formulario")
                     .setEmoji("<a:positivoverde:971592150246654002>")
-                    .setLabel("Concordar com os Termos & Liberar Acesso")
+                    .setLabel(main.botton)
                     .setStyle(Discord.ButtonStyle.Success)
                 );
 

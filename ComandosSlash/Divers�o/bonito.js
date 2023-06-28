@@ -1,4 +1,5 @@
 const Discord = require("discord.js");
+const main = require('../../main')
 
 module.exports = {
   name: "bonito",
@@ -20,7 +21,7 @@ module.exports = {
       .setTitle("Avaliação de Beleza!")
       .setDescription(`**${member}** é ${porcentagem}% bonito(a)!`)
       .setImage(member.displayAvatarURL({ size: 512 }))
-      .setColor("#9c89ad")
+      .setColor(main.color)
       .setTimestamp();
 
     return interaction.reply({ embeds: [embedHyou] }).catch(console.error);

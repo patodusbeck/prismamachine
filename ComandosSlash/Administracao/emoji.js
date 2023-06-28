@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-
+const main = require('../../main')
 module.exports = {
   name: 'emoji',
   description: '✦ » Staff - Sistema Emojis',
@@ -72,7 +72,7 @@ module.exports = {
 
           const embed = new Discord.EmbedBuilder()
             .setTitle('Emoji Adicionado Com Sucesso!')
-            .setColor("#8C9FFF")
+            .setColor(main.color)
             .addFields(
               { name: `<:logo:1115393036910874664> | Nome:`, value: `> ${name}`, inline: true },
               { name: '<:logo:1115393036910874664> | Animado?', value: emoji.animated ? '> Sim' : '> Não', inline: true },
@@ -110,7 +110,7 @@ module.exports = {
 
           const embed = new Discord.EmbedBuilder()
             .setTitle('Emoji Renomeado Com Sucesso!')
-            .setColor('#8C9FFF')
+            .setColor(main.color)
             .setThumbnail(emoji1.url)
             .addFields(
               { name: `<:tag:1094460828549386340> | Nome Antigo:`, value: `> ${oldName}`, inline: true },
@@ -139,7 +139,7 @@ module.exports = {
 
           const embed_ = new Discord.EmbedBuilder()
             .setTitle('Emoji Deletado Com Sucesso!')
-            .setColor('#8C9FFF')
+            .setColor(main.color)
             .setThumbnail(emojiToRemove_.url)
             .addFields(
               { name: '<:tag:1094460828549386340> | Nome:', value: `> ${emojiToRemove_.name}`, inline: true },
@@ -175,7 +175,7 @@ module.exports = {
                     .setURL(img));
 
               let embedz = new Discord.EmbedBuilder()
-                .setColor("#8C9FFF")
+                .setColor(main.color)
                 .setTitle("Informações do Emoji:")
                 .setThumbnail(`${img}`)
                 .addFields(
@@ -228,7 +228,7 @@ module.exports = {
                     .setURL(`${img}`));
 
               let embedz = new Discord.EmbedBuilder()
-                .setColor("#8C9FFF")
+                .setColor(main.color)
                 .setTitle("Informações do Emoji:")
                 .setThumbnail(img)
                 .addFields(
@@ -276,7 +276,7 @@ module.exports = {
         WhizDigy = new Discord.EmbedBuilder()
           .setTitle('Erro!')
           .setDescription('Houve um erro inesperado, por favor, tente novamente.')
-          .setColor('#ff0000');
+          .setColor(main.color);
         interaction.reply({ embeds: [WhizDigy], ephemeral: true })
     }
   },

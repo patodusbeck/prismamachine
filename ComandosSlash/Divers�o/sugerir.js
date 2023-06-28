@@ -1,4 +1,5 @@
-const Discord = require("discord.js")
+const Discord = require("discord.js");
+const main = require('../../main');
 
 module.exports = {
   name: "sugerir", // Coloque o nome do comando
@@ -15,13 +16,13 @@ module.exports = {
 
   run: async (client, interaction) => {
 
-    let canal = interaction.guild.channels.cache.get("1115026530150645831") // Canal de sugestões do servidor
+    let canal = interaction.guild.channels.cache.get(main.sugestlog) // Canal de sugestões do servidor
     if (!canal) {
         interaction.reply(`Olá ${interaction.user}, o canal de sugestões ainda não foi configurado no script!`)
     } else {
         let sugestao = interaction.options.getString("sugestão");
         let embed = new Discord.EmbedBuilder()
-        .setColor("#9c89ad")
+        .setColor(main.color)
         .setAuthor({ name: interaction.user.username, iconURL: interaction.user.displayAvatarURL({ dynamic: true }) })
         .setThumbnail(interaction.guild.iconURL({ dynamic: true }))
         .setTitle("Nova sugestão!")

@@ -1,4 +1,5 @@
 const Discord = require("discord.js")
+const main = require('../../main')
 
 module.exports = {
   name: "ban", // Coloque o nome do comando
@@ -31,11 +32,11 @@ module.exports = {
         if (!motivo) motivo = "Não definido.";
 
         let embed = new Discord.EmbedBuilder()
-        .setColor("#9c89ad")
+        .setColor(main.color)
         .setDescription(`O usuário ${user} (\`${user.id}\`) foi banido com sucesso!`);
 
         let erro = new Discord.EmbedBuilder()
-        .setColor("#9c89ad")
+        .setColor(main.color)
         .setDescription(`Não foi possível banir o usuário ${user} (\`${user.id}\`) do servidor!`);
 
         user.ban({ reason: [motivo] }).then( () => {

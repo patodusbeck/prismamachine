@@ -1,5 +1,6 @@
 const Discord = require("discord.js")
 const ms = require('ms')
+const main = require('../../main')
 
 module.exports = {
   name: 'enquete', // Coloque o nome do comando
@@ -49,7 +50,7 @@ module.exports = {
 
         const embed = new Discord.EmbedBuilder()
         .setAuthor({ name: interaction.guild.name, iconURL: interaction.guild.iconURL({ dynamic: true }) })
-        .setColor('Yellow')
+        .setColor(main.color)
         .setThumbnail(interaction.guild.iconURL({ dynamic: true }))
         .setTitle('Nova enquete: ' + titulo)
         .setDescription(`Nova enquete criada por ${interaction.user} (${interaction.user.id}).\n\n>  ${emojis[0]} ${op1}\n> ${emojis[1]} ${op2}`)
@@ -82,7 +83,7 @@ module.exports = {
 
                     const embedOff = new Discord.EmbedBuilder()
                     .setAuthor({ name: interaction.guild.name, iconURL: interaction.guild.iconURL({ dynamic: true }) })
-                    .setColor(null)
+                    .setColor(main.color)
                     .setThumbnail(interaction.guild.iconURL({ dynamic: true }))
                     .setTitle('Enquete Encerrada: ' + titulo)
                     .setDescription(`Nova enquete criada por ${interaction.user} (${interaction.user.id}).\n\n>  ${emojis[0]} ${op1}\n> ${emojis[1]} ${op2}`)

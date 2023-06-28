@@ -1,4 +1,6 @@
 const Discord = require('discord.js')
+const main = require('../../main')
+
 module.exports = {
     name: "slap",
     description: "🔮 » Diversão - Dê um tapa em uma pessoa.",
@@ -37,7 +39,7 @@ module.exports = {
         const embed = new Discord.EmbedBuilder()
             .setDescription(`**${interaction.user} Deu um tapa em ${user}.**`)
             .setImage(`${random1}`)
-            .setColor("#9c89ad")
+            .setColor(main.color)
         const button = new Discord.ActionRowBuilder()
             .addComponents(
                 new Discord.ButtonBuilder()
@@ -50,7 +52,7 @@ module.exports = {
 
         const embed1 = new Discord.EmbedBuilder()
             .setDescription(`**${user} Retribuiu o tapa de ${interaction.user}.**`)
-            .setColor("#9c89ad")
+            .setColor(main.color)
             .setImage(`${random2}`)
 
         interaction.reply({ embeds: [embed], components: [button] }).then(() => {

@@ -1,5 +1,5 @@
 const Season = "Season I" // Atual Season | Temporada
-
+const main = require('../../main')
 
 
 const Discord = require('discord.js')
@@ -22,7 +22,7 @@ module.exports = {
     let embed = new Discord.EmbedBuilder()
       .setTitle('Prisma Machine')
       .setThumbnail('https://media.discordapp.net/attachments/1115114682781544458/1115114717783019530/logo_essenze_v1.png?')
-      .setColor('#f26658')
+      .setColor(main.color)
       .setDescription(`
       ## Square Cloud Console - Prisma Machine
 

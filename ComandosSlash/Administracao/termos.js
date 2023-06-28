@@ -1,4 +1,5 @@
 const Discord = require("discord.js")
+const main = require('../../main')
 
 module.exports = {
   name: "termos", // Coloque o nome do comando
@@ -29,7 +30,7 @@ module.exports = {
 Olá, o Prisma Roleplay te deseja uma boas vindas. Uma forma de retribuir todo nosso trabalho e carinho é realizando uma doação, vale lembrar que as doações NÃO são obrigatórias para jogar na cidade, mas é uma forma de vocês nos ajudarem a mante-la. <:visualbasic:1115043415764258867>
         
         `)
-        .setColor(`#9c89ac`)
+        .setColor(main.color)
 
         const b = new Discord.ButtonBuilder()
         .setLabel('Termos de Serviço')
@@ -61,7 +62,7 @@ Olá, o Prisma Roleplay te deseja uma boas vindas. Uma forma de retribuir todo n
 
                 const fun = new Discord.EmbedBuilder()
                 .setTitle('Termos de Serviço do Prisma Roleplay <:logo:1115393036910874664>')
-                  .setColor("#9c89ad")
+                  .setColor(main.color)
                   .setDescription(`
                   **1. Utilização dos serviços do Prisma Roleplay <:serverrules:1115024947480363008>**
 
@@ -97,7 +98,7 @@ Olá, o Prisma Roleplay te deseja uma boas vindas. Uma forma de retribuir todo n
 
                 const adm = new Discord.EmbedBuilder()
                 .setTitle('Termos de Uso do Prisma Roleplay <:serverrules:1115024947480363008>')
-                  .setColor("#9c89ad")
+                  .setColor(main.color)
                   .setDescription(`
                 
                   > **1. Responsabilidades do jogador <:serverrules:1115024947480363008>**
@@ -145,7 +146,7 @@ Olá, o Prisma Roleplay te deseja uma boas vindas. Uma forma de retribuir todo n
 
                 const music = new Discord.EmbedBuilder()
                 .setTitle('Regras Gerais Prisma Roleplay <:serverrules:1115024947480363008>')
-                             .setColor("#9c89ad")
+                             .setColor(main.color)
                              .setDescription(`
                              As regras do Prisma Roleplay são estabelecidas para garantir que os jogadores mantenham um ambiente de jogo **saudável e justo**. As regras definem comportamentos **inaceitáveis** e as punições correspondentes para jogadores que as violarem.
 

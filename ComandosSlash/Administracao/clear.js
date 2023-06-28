@@ -1,4 +1,5 @@
 const Discord = require("discord.js")
+const main = require('../../main')
 
 module.exports = {
     name: "clear", // Coloque o nome do comando
@@ -25,7 +26,7 @@ module.exports = {
             if (parseInt(numero) > 99 || parseInt(numero) <= 0) {
 
                 let embed = new Discord.EmbedBuilder()
-                    .setColor("#9c89ad")
+                    .setColor(main.color)
                     .setDescription(`\`/clear [1 - 99]\``);
 
                 interaction.reply({ embeds: [embed] })
@@ -35,7 +36,7 @@ module.exports = {
                 interaction.channel.bulkDelete(parseInt(numero))
 
                 let embed = new Discord.EmbedBuilder()
-                    .setColor("#9c89ad")
+                    .setColor(main.color)
                     .setAuthor({ name: interaction.guild.name, iconURL: interaction.guild.iconURL({ dynamic: true }) })
                     .setDescription(`O canal de texo ${interaction.channel} teve \`${numero}\` mensagens deletadas por \`${interaction.user.username}\`.`);
 

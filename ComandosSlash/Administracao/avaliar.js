@@ -1,4 +1,5 @@
 const { Client, ChatInputCommandInteraction, EmbedBuilder } = require("discord.js");
+const main =require('../../main')
 
 module.exports = {
     name: "avaliar",
@@ -44,15 +45,15 @@ module.exports = {
         const estrelas = options.getString("avaliar");
         const texto = options.getString("feedback");
     
-        const ID = "1116543569973489764"; // Channel onde sera enviado a avaliação
-        const Cargo = "1114964337237434413"; // Cargo de cliente 
+        const ID = main.feedlog; // Channel onde sera enviado a avaliação
+        const Cargo = main.roleclient; // Cargo de cliente 
     
         if (!interaction.member.roles.cache.has(Cargo)) {
           return interaction.reply({
             embeds: [
                 new EmbedBuilder()
                   .setDescription(':x: Você não tem permissão para usar este comando')
-                  .setColor('#9c89ad'),
+                  .setColor(main.color),
               ],
               ephemeral: true,
           });
@@ -79,7 +80,7 @@ module.exports = {
               value: "```" + texto + "```",
             },
           ])
-          .setColor('#9c89ad')
+          .setColor(main.color)
           .setThumbnail(guild.iconURL({ dynamic: true }))
           .setFooter({ text: `© ${guild.name}`, iconURL: guild.iconURL() });
     
@@ -91,7 +92,7 @@ module.exports = {
           embeds: [
             new EmbedBuilder()
               .setDescription(`A sua avaliaçao foi enviada com sucesso!\n\n Caso tenha alguma dúvida nos contate por [Ticket](https://discord.com/channels/906262123573805087/1018625032362143844) \n\n Obrigado pelo feedback! :)`)
-              .setColor('#9c89ad'),
+              .setColor(main.color),
           ],
           ephemeral: true,
         });

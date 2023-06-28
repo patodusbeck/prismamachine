@@ -1,4 +1,5 @@
 const Discord = require("discord.js")
+const main = require('../../main')
 
 module.exports = {
   name: "staff", // Coloque o nome do comando
@@ -9,7 +10,7 @@ module.exports = {
 
     const embed = new Discord.EmbedBuilder()
     .setTitle('🤖 Ver todos os comandos de moderação!')
-    .setColor("#9c89ad")
+    .setColor(main.color)
     .setDescription(`Selecione uma categoria de comandos para ver.`)
 
     const row = new Discord.ActionRowBuilder()
@@ -43,7 +44,7 @@ module.exports = {
                if(valor == "economia"){
                  interaction.editReply({embeds: [new Discord.EmbedBuilder()
                   .setTitle('<:__:1051498240392044555> Comandos de Moderação Staff')
-                  .setColor("#9c89ad")
+                  .setColor(main.color)
                   .addFields(
                       { name: '__Anunciar__', value: 'Faça um anuncio!' },
                       { name: '__Ban__', value: 'Banir úsuario.' },
@@ -65,7 +66,7 @@ module.exports = {
                 if(valor == "outros"){
                  interaction.editReply({embeds: [new Discord.EmbedBuilder()
                   .setTitle('Lista de Comandos Whitelist <:serverrules:1115024947480363008>')
-                  .setColor("#9c89ad")
+                  .setColor(main.color)
                   .addFields(
                     { name: '__App__', value: 'Aprovar Whitelist!' },
                     { name: '__V__', value: 'Dar cargo de Cidadão e Alterar Nome.' },
@@ -78,7 +79,7 @@ module.exports = {
                           if(valor == "regras"){
                             interaction.editReply({embeds: [new Discord.EmbedBuilder()
                              .setTitle('Moderação in-game <:serverrules:1115024947480363008>')
-                             .setColor("#9c89ad")
+                             .setColor(main.color)
                              .setDescription(`** <:__:1051498240392044555> Observação: **
 
                              Todos os comandos devem ser antecedidos de "**/**" e todas as letras minusculas. (Exceto o NC)

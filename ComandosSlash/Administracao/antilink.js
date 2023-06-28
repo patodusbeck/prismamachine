@@ -1,6 +1,7 @@
 const Discord = require("discord.js")
 const { QuickDB } = require("quick.db")
 const db = new QuickDB();
+const main = require('../../main')
 
 module.exports = {
   name: "antilink", // Coloque o nome do comando
@@ -13,11 +14,11 @@ module.exports = {
         interaction.reply({ content: `Você não possui permissão para utilizar este comando.`, ephemeral: true })
     } else {
         let embed_g = new Discord.EmbedBuilder()
-        .setColor("#9c89ad")
+        .setColor(main.color)
         .setDescription(`Olá ${interaction.user}, o sistema de antilink foi \`ativado\`.`);
 
         let embed_r = new Discord.EmbedBuilder()
-        .setColor("#9c89ad")
+        .setColor(main.color)
         .setDescription(`Olá ${interaction.user}, o sistema de antilink foi \`desativado\`.`);
 
         let confirm = await db.get(`antilink_${interaction.guild.id}`);

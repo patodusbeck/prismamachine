@@ -1,4 +1,6 @@
 const Discord = require('discord.js')
+const main = require('../../main')
+
 module.exports = {
     name: "rolar",
     description: "🎰 » Games - Rolar dado",
@@ -29,7 +31,7 @@ module.exports = {
         const embed = new Discord.EmbedBuilder()
             .setDescription(`**${interaction.user} Rolou o dado e ele parou em:**`)
             .setImage(`${random1}`)
-            .setColor("#9c89ad")
+            .setColor(main.color)
 
             interaction.reply({ embeds: [embed], }).then(() => {
                 const filter = i => i.customId === '1' && i.user.id === user.id;

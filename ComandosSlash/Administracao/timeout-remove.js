@@ -68,7 +68,7 @@ module.exports = {
                 if (targetUser.isCommunicationDisabled()) {
                     await targetUser.timeout(msDuration);
                     let embed = new Discord.EmbedBuilder()
-                        .setColor("Random")
+                        .setColor(main.color)
                         .setAuthor({ name: interaction.user.username, iconURL: interaction.user.displayAvatarURL({ dynamic: true }) })
                         .setTitle(`Timeout removido com sucesso!`)
                         .setDescription(`

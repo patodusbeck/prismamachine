@@ -96,7 +96,7 @@ module.exports = {
                 if (targetUser.isCommunicationDisabled()) {
                     await targetUser.timeout(msDuration, reason);
                     let embedupdated = new Discord.EmbedBuilder()
-                        .setColor("Random")
+                        .setColor(main.color)
                         .setAuthor({ name: interaction.user.username, iconURL: interaction.user.displayAvatarURL({ dynamic: true }) })
                         .setTitle(`Timeout atualizado com sucesso!`)
                         .setDescription(`
@@ -109,7 +109,7 @@ module.exports = {
                 } else {
                     await targetUser.timeout(msDuration, reason);
                     let embed = new Discord.EmbedBuilder()
-                        .setColor("Random")
+                        .setColor(main.color)
                         .setAuthor({ name: interaction.user.username, iconURL: interaction.user.displayAvatarURL({ dynamic: true }) })
                         .setTitle(`Timeout aplicado com sucesso!`)
                         .setDescription(`

@@ -1,5 +1,6 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const Discord = require('discord.js')
+const main = require('../../main')
 
 module.exports = {
     name: "v",
@@ -25,7 +26,7 @@ module.exports = {
     const { guild, user, options } = interaction;
 
     const member = guild.members.cache.get(options.getUser('user').id);
-    const role = '1114964337237434413'; // CARGO DE CIDADÃO/VERIFICADO
+    const role = main.verified; // CARGO DE CIDADÃO/VERIFICADO
     const nickname = options.getString('nickname');
 
     if (member.roles.cache.has(role)) {

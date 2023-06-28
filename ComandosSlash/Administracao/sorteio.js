@@ -1,5 +1,6 @@
 const Discord = require("discord.js");
 const ms = require("ms");
+const main = require('../../main')
 
 module.exports = {
   name: "sorteio", // Coloque o nome do comando
@@ -118,10 +119,10 @@ module.exports = {
 Clique no botão para parcipar.\n**Boa sorte!!!**`)
         .setTimestamp(Date.now() + ms(tempo))
         .setFooter({ text: "Data do sorteio:" })
-        .setColor("#9c89ad");
+        .setColor(main.color);
 
       let erro = new Discord.EmbedBuilder()
-        .setColor("#9c89ad")
+        .setColor(main.color)
         .setDescription(`Não foi possível promover o soteio!`);
 
       const msg = await interaction.reply({ embeds: [embed], components: [button] }).catch((e) => {

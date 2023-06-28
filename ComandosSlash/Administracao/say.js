@@ -1,4 +1,5 @@
 const Discord = require("discord.js")
+const main = require('../../main')
 
 module.exports = {
   name: "say", // Coloque o nome do comando
@@ -35,7 +36,7 @@ module.exports = {
             if (!normal_fala) normal_fala = "⠀";
 
             let embed = new Discord.EmbedBuilder()
-            .setColor("#9c89ad")
+            .setColor(main.color)
             .setAuthor({ name: interaction.user.username, iconURL: interaction.user.displayAvatarURL({ dynamic: true }) })
             .setDescription(embed_fala);
 

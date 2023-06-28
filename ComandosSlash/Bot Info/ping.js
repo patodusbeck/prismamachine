@@ -1,4 +1,5 @@
 const Discord = require("discord.js");
+const main = require('../../main')
 
 module.exports = {
     name: "ping",
@@ -15,7 +16,7 @@ module.exports = {
 			);
       
       const embed = new Discord.EmbedBuilder()
-      .setColor("#9c89ad")
+      .setColor(main.color)
        .setTitle("🎾 ****»**** **PONG!**")
         .setDescription(`> **ping do bot** \`${client.ws.ping}\`**ms!**`)
         interaction.reply({embeds: [embed], components: [button],fetchReply: true}).then(msg =>{
@@ -24,7 +25,7 @@ module.exports = {
 
   collector.on("collect", i =>{
     i.reply({embeds: [new Discord.EmbedBuilder()
-      .setColor("#9c89ad")
+      .setColor(main.color)
       .setDescription(`> **ping do bot** \`${client.ws.ping}\`**ms!**`)]})
   })
           

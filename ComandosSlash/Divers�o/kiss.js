@@ -1,4 +1,6 @@
 const Discord = require('discord.js')
+const main = require('../../main')
+
 module.exports = {
     name: "kiss",
     description: "🔮 » Diversão - Beije alguém!",
@@ -37,7 +39,7 @@ module.exports = {
         const embed = new Discord.EmbedBuilder()
             .setDescription(`**${interaction.user} Deu um beijo em ${user}.**`)
             .setImage(`${random1}`)
-            .setColor("#9c89ad")
+            .setColor(main.color)
 
         const button = new Discord.ActionRowBuilder()
             .addComponents(
@@ -51,7 +53,7 @@ module.exports = {
 
         const embed1 = new Discord.EmbedBuilder()
             .setDescription(`**${user} Retribuiu o beijo de ${interaction.user}.**`)
-            .setColor("#9c89ad")
+            .setColor(main.color)
             .setImage(`${random2}`)
 
         interaction.reply({ embeds: [embed], components: [button] }).then(() => {

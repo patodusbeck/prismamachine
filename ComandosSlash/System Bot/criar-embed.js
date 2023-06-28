@@ -1,4 +1,5 @@
 const { EmbedBuilder, ActionRowBuilder, StringSelectMenuBuilder, ButtonBuilder, ButtonStyle, ComponentType } = require('discord.js');
+const main = require('../../main');
 
 module.exports = {
     name: "embed",
@@ -12,7 +13,7 @@ module.exports = {
             required: false
         }
     ],
-    role_perms: ['1074041160865161270'],
+    role_perms: [main.rpermission],
     developers_only: false,
     category: 'Administration',
     run: async (client, interaction, config) => {
@@ -26,7 +27,7 @@ module.exports = {
         const embedMain = new EmbedBuilder()
             .setTitle('Embed')
             .setDescription('Selecione uma opção no menu para editar.')
-            .setColor('#9c89ad');
+            .setColor(main.color);
 
         let embedToEdit = new EmbedBuilder()
             .setDescription('Me personalize!');
@@ -113,7 +114,7 @@ module.exports = {
                     embeds: [
                         new EmbedBuilder()
                             .setDescription('Digite o nome do autor do embed neste canal.')
-                            .setColor('#9c89ad')
+                            .setColor(main.color)
                             .setFooter({
                                 text: "Digite \"cancelar\" Para cancelar."
                             })
@@ -136,7 +137,7 @@ module.exports = {
                             embeds: [
                                 new EmbedBuilder()
                                     .setDescription('<:crosscircle:1122372730596110466> Cancelado.')
-                                    .setColor('#9c89ad')
+                                    .setColor(main.color)
                             ]
                         });
                     };
@@ -159,7 +160,7 @@ module.exports = {
                     embeds: [
                         new EmbedBuilder()
                             .setDescription('Digite o titulo do Embed neste chat.')
-                            .setColor('#9c89ad')
+                            .setColor(main.color)
                             .setFooter({
                                 text: "Digite \"cancelar\" Para cancelar"
                             })
@@ -182,7 +183,7 @@ module.exports = {
                             embeds: [
                                 new EmbedBuilder()
                                     .setDescription('<:crosscircle:1122372730596110466> Cancelado.')
-                                    .setColor('#9c89ad')
+                                    .setColor(main.color)
                             ]
                         });
                     };
@@ -205,7 +206,7 @@ module.exports = {
                     embeds: [
                         new EmbedBuilder()
                             .setDescription('Por favor escreva a descrição do embed nesse chat')
-                            .setColor('#9c89ad')
+                            .setColor(main.color)
                             .setFooter({
                                 text: "Digite \"cancelar\" para cancelar."
                             })
@@ -228,7 +229,7 @@ module.exports = {
                             embeds: [
                                 new EmbedBuilder()
                                     .setDescription('<:crosscircle:1122372730596110466> Cancelado.')
-                                    .setColor('#9c89ad')
+                                    .setColor(main.color)
                             ]
                         });
                     };
@@ -251,7 +252,7 @@ module.exports = {
                     embeds: [
                         new EmbedBuilder()
                             .setDescription('Por favor digite nesse chat o Footer do Embed')
-                            .setColor('#9c89ad')
+                            .setColor(main.color)
                             .setFooter({
                                 text: "Digite \"cancelar\" Para cancelar."
                             })
@@ -274,7 +275,7 @@ module.exports = {
                             embeds: [
                                 new EmbedBuilder()
                                     .setDescription('<:crosscircle:1122372730596110466> Cancelado.')
-                                    .setColor('#9c89ad')
+                                    .setColor(main.color)
                             ]
                         });
                     };
@@ -299,7 +300,7 @@ module.exports = {
                             .setDescription('Por favor digite o código HEX da cor nesse chat.')
                             .setFooter({
                                 text: 'Digite \"cancelar\" Para cancelar | /n/ Observação: Para a API do Discord, é necessário fornecer as cores como "Blue", "Red"... etc. O nome da cor sempre deve começar com uma letra maiúscula.'})
-                            .setColor('#9c89ad')
+                            .setColor(main.color)
                     ],
                     ephemeral: true
                 }).catch(() => { });
@@ -319,7 +320,7 @@ module.exports = {
                             embeds: [
                                 new EmbedBuilder()
                                     .setDescription('<:crosscircle:1122372730596110466> Cancelado.')
-                                    .setColor('#9c89ad')
+                                    .setColor(main.color)
                             ]
                         });
                     };
@@ -349,7 +350,7 @@ module.exports = {
                             .setFooter({
                                 text: "Digite `\cancelar`\ para cancelar essa interação. Observação Certifique-se de que o link comece com \"http://\"Caso contrário não será exibido nada."
                             })
-                            .setColor('#9c89ad')
+                            .setColor(main.color)
                     ],
                     ephemeral: true
                 }).catch(() => { });
@@ -369,7 +370,7 @@ module.exports = {
                             embeds: [
                                 new EmbedBuilder()
                                     .setDescription('<:crosscircle:1122372730596110466> Cancelado.')
-                                    .setColor('#9c89ad')
+                                    .setColor(main.color)
                             ]
                         });
                     };
@@ -399,7 +400,7 @@ module.exports = {
                             .setFooter({
                                 text: "Digite \"cancelar\" Para cancelar.\nImportante:  o início da URL tem que ser \"https://\"!"
                             })
-                            .setColor('#9c89ad')
+                            .setColor(main.color)
                     ],
                     ephemeral: true
                 }).catch(() => { });
@@ -419,7 +420,7 @@ module.exports = {
                             embeds: [
                                 new EmbedBuilder()
                                     .setDescription('<:crosscircle:1122372730596110466> Cancelado.')
-                                    .setColor('#9c89ad')
+                                    .setColor(main.color)
                             ]
                         });
                     };
@@ -493,7 +494,7 @@ module.exports = {
                         new EmbedBuilder()
                             .setTitle('Como criar embed?')
                             .setDescription(`Para criar um embed basta apenas clicar no menu e selecionar a opção desejada para assim personalizar no jeitinho que você quiser!`)
-                            .setColor('#9c89ad')
+                            .setColor(main.color)
                     ],
                     ephemeral: true
                 }).catch(() => { });

@@ -1,5 +1,6 @@
 const client = require("../../index");
 const Discord = require("discord.js")
+const main = require('../../main')
 
 client.on("messageCreate", message => {
 
@@ -10,9 +11,9 @@ client.on("messageCreate", message => {
   
   const embed = new Discord.EmbedBuilder()
     .setTitle(`${client.user.username}`)
-    .setColor("#9c89ad")
+    .setColor(main.color)
     .setThumbnail(client.user.avatarURL())
-    .setDescription(`> **Opa! Bão?** Me chamo \`${client.user.username}\`, se precisar de ajuda use /help`)
+    .setDescription(`> **Opa!** Me chamo \`${client.user.username}\`, se precisar de ajuda use /help`)
 
    message.reply({embeds: [embed]})
   }

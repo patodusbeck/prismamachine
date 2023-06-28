@@ -1,5 +1,6 @@
 const Discord = require("discord.js");
 const moment = require("moment");// npm i moment
+const main = require('../../main')
 
 module.exports = {
     name: "bateponto",
@@ -21,7 +22,7 @@ module.exports = {
         let embed = new Discord.EmbedBuilder()
             .setAuthor({ name: interaction.user.tag, iconURL: interaction.user.displayAvatarURL({ dynamic: true }) })
             .setThumbnail(interaction.user.displayAvatarURL({ dynamic: true, size: 4096 }))
-            .setColor("#9c89ad")
+            .setColor(main.color)
             .addFields(
                 {
                     name: "⏰ | Inicio:",
@@ -57,7 +58,7 @@ module.exports = {
                 await interactionn.update({
                     embeds: [
                         new Discord.EmbedBuilder()
-                            .setColor("#9c89ad")
+                            .setColor(main.color)
                             .setThumbnail(interaction.user.displayAvatarURL({ dynamic: true, size: 4096 }))
                             .setAuthor({ name: 'Bate Ponto Staff', iconURL: interaction.user.displayAvatarURL({ dynamic: true }) })
                             .addFields(

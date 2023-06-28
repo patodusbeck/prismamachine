@@ -1,4 +1,5 @@
 const Discord = require("discord.js")
+const main = require('../../main')
 
 module.exports = {
   name: "userinfo", // Coloque o nome do comando
@@ -25,7 +26,7 @@ module.exports = {
     if (is_bot === false) is_bot = "Não";
 
     let embed = new Discord.EmbedBuilder()
-    .setColor("#9c89ad")
+    .setColor(main.color)
     .setAuthor({ name: user.username, iconURL: user.displayAvatarURL({ dynamic: true }) })
     .setThumbnail(user.displayAvatarURL({ dynamic: true }))
     .setTitle("Informações do Usuário:")

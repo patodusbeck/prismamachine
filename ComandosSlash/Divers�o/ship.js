@@ -1,7 +1,7 @@
 const { Client, ChatInputCommandInteraction, EmbedBuilder } = require("discord.js")
 const block = "⬛";
 const heart = ":red_square:";
-
+const main = require('../../main')
 
 module.exports = {
     name: "ship",
@@ -33,7 +33,7 @@ module.exports = {
         const user2 = interaction.options.getUser("user2")
 
         const embed = new EmbedBuilder()
-            .setColor('#9c89ad')
+            .setColor(main.color)
             .setTitle('💓 **Teremos um novo casal aqui?** 💓')
             .setImage(`https://api.popcat.xyz/ship?user1=${user1.displayAvatarURL({ dynamic: false, extension: "png" })}&user2=${user2.displayAvatarURL({ dynamic: false, extension: "png" })}`)
             .addFields(
@@ -48,7 +48,7 @@ module.exports = {
                 embeds: [
                     new EmbedBuilder()
                     .setDescription(`❌ | Um erro ocorreu`)
-                    .setColor("#9c89ad")
+                    .setColor(main.color)
                 ], ephemeral: true
             })
         }

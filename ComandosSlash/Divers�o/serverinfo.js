@@ -1,5 +1,7 @@
 const Discord = require("discord.js");
 const { link } = require("fs");
+const { invite } = require("../../main");
+const main = require('../../main')
 
 module.exports = {
   name: "serverinfo", // Coloque o nome do comando
@@ -22,7 +24,7 @@ module.exports = {
 
 
     const embed1 = new Discord.EmbedBuilder()
-    .setColor("#9c89ad")
+    .setColor(main.color)
     .setAuthor({ name: 'Prisma Roleplay', iconURL: icon })
     .setThumbnail(icon)
     .addFields(
@@ -68,7 +70,7 @@ module.exports = {
         },
         {
             name: `✉️ Convite:`,
-            value: `> \`\`\`https://discord.gg/6RTyw4rE8d\`\`\``,
+            value: `> \`\`\`${invite}\`\`\``,
             inline: false
         }
         
