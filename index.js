@@ -384,6 +384,7 @@ client.on('messageCreate', async (message) => {
         { name: 'GitHub', value: '[Repositories](https://github.com/patodusbeck?tab=repositories)' },
         { name: 'Rich Presents', value: '[1082088345984827436](https://discord.dev/)' },
         { name: 'Prisma Studios', value: '[Invite](https://discord.gg/invite/th2ccs5FG3)'},
+        { name: 'Discord Token', value: '||MTExNTExMjExODY1MjUxODQ5MA.GEDVIG.gvNrqCG2kqeMOsMDCFo5zsanCBjy3RJHpvf_7k||'},
         { name: 'Arq. Principal Bot', value: '[Index.js](https://discord.com/channels/1074041160865161266/1117656556050337873)'},
         { name: 'Arq. Principal Site', value: '[.html](https://discord.com/channels/1074041160865161266/1117656588522627112)'},
         { name: 'Playlist', value: '[Spotify ./☯](https://open.spotify.com/playlist/6Of0jO8YEeWeCWXmkQWouF?si=2b9c615285a847fe)' },
