@@ -1,5 +1,9 @@
-const main = require('./main.js')
+// - 𝔓𝔄𝔗𝔒 𝔇𝔘𝔖 𝔅𝔈ℭ𝔎 - //
+// - developer by pato dus beck - //
+
+
 ////////////////////////ANTI CRASH - PATO DUS BECK \\\\\\\\\\\\\\\\\\\\\
+
 
 const process = require('node:process');
 
@@ -16,15 +20,14 @@ process.on('unhandledRejection', (reason, promise) => {
 
   `❌ Causa do erro: ${reason}`);
 });
-////////////////////////ANTI CRASH - PATO DUS BECK \\\\\\\\\\\\\\\\\\\\\
-
+////////////////////////CONST'S \\\\\\\\\\\\\\\\\\\\\
+const main = require('./main.js')
 const Discord = require("discord.js");
-//const Database = require('./config/database');
-//const db = new Database;
 const { QuickDB } = require("quick.db")
 const db = new QuickDB()
 const { GatewayIntentBits } = require("discord.js")
-const config = require("./Config.json")
+const config = require("./Config.json");
+const { clear } = require('node:console');
 const client = new Discord.Client({
     intents: [ 
 GatewayIntentBits.Guilds, 
@@ -42,13 +45,14 @@ client.slashCommands = new Discord.Collection();
 
 require("./src/Handler")(client);
 
-//const mg = require('mongoose');
-//
- //    mg.connect('mongodb+srv://patodusbeck:Manu2019@cluster0.7hnyin0.mongodb.net/?retryWrites=true&w=majority', {
+/*
+const mg = require('mongoose');
 
-//
-  //   }).then(()  => console.log('Database Online com sucesso.'));
+     mg.connect('mongodb+srv://patodusbeck:Manu2019@cluster0.7hnyin0.mongodb.net/?retryWrites=true&w=majority', {
 
+
+     }).then(()  => console.log('Database Online com sucesso.'));
+*/
 
 
 client.login(main.BotToken);
@@ -102,7 +106,7 @@ client.on("guildMemberAdd", (member) => {
     let msgeditada = oldMessage.content;
 
     let embed = new Discord.EmbedBuilder()
-        .setTitle(`📝 Mensagem editada`)
+        .setTitle(`<:refresh:1121581824930500698> Mensagem editada`)
         .setColor(main.color)
         .addFields(
           { name: 'Autor da Mensagem', value: `${message.author}` },
@@ -152,7 +156,9 @@ const status = [
 ]
 
 client.on('ready', (c) => {
-  console.log(`✦ Prisma Studios </> - Online!`);
+  console.clear();
+  console.log(`✦ Prisma Studios </> - Online!`)
+  console.log('𝔓𝔄𝔗𝔒 𝔇𝔘𝔖 𝔅𝔈ℭ𝔎');
 
   setInterval(() => {
     let random = Math.floor(Math.random() * status.length);
@@ -385,5 +391,35 @@ client.on('messageCreate', async (message) => {
 
     channel.send({ embeds: [botv2] }, ephemeral=true);
 
+  }
+});
+
+////////////////////// MENSAGEM APAGADA /////////////////////
+client.on('messageDelete', async (message) => {
+  const logsChannelId = main.channellog; // Insira o ID do canal de logs onde as mensagens apagadas serão enviadas
+
+  // Verifica se o canal de logs foi definido anteriormente
+  if (!logsChannelId) {
+    console.log('Canal de logs não definido.');
+    return;
+  }
+
+  // Verifica se o autor da mensagem deletada é um usuário (não é válido para mensagens do sistema)
+  if (message.author && !message.author.bot) {
+    const logsChannel = await client.channels.fetch(logsChannelId);
+
+    const embedclear = new Discord.EmbedBuilder()
+        .setTitle(`<:broom:1122365727924568186> Mensagem Apagada`)
+        .setColor(main.color)
+        .addFields(
+          { name: 'Autor da Mensagem', value: `${message.author}/\`${message.author.id}\`` },
+          { name: 'Canal', value: `<#${message.channel.id}>` },
+          { name: 'Mensagem Apagada', value: `\`\`\`${message.content}\`\`\`` },
+      )
+        .setTimestamp()
+        .setThumbnail(message.author.displayAvatarURL({ dynamic: true }))
+        .setFooter({ text: `PrismaStudios </>`, iconURL: message.guild.iconURL({ dynamic: true }) })
+
+    logsChannel.send({ embeds: [embedclear] })
   }
 });

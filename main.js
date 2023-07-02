@@ -1,8 +1,12 @@
+// - 𝔓𝔄𝔗𝔒 𝔇𝔘𝔖 𝔅𝔈ℭ𝔎 - //
+// - developer by pato dus beck - //
+
 module.exports = {
     // Basic configuration
     BotToken: 'MTA5NTQ3NjkwODM2MTI2OTM1OQ.GS5Gye.bTh39eTFg0eSarDpSM0fY__M5fpBtUla6FepDg', // token bot
     GuildID: '1074041160865161266', // Guild ID | Server ID
     invite: 'https://discord.gg/th2ccs5FG3',
+    channellog: '1117602396961509406',
     color: '#9c89ad',
     thumbInv: 'https://media.discordapp.net/attachments/1115114682781544458/1115416326668816434/logo_essenze_v1.png?',
     imageback: 'https://media.discordapp.net/attachments/1115114682781544458/1116580426258055179/background.jpg?',
@@ -18,7 +22,7 @@ module.exports = {
     three: 'Venha se divertir!',
 
     // Welcome & Leave Message
-    wellog: '1114964338738991127', // channel log
+    wellog: '1117602396961509406', // channel log
     levlog: '🔔・log-discord', // channel log
 
     // Message Edit
