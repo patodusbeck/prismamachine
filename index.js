@@ -424,3 +424,28 @@ client.on('messageDelete', async (message) => {
     logsChannel.send({ embeds: [embedclear] })
   }
 });
+/////////////////////////////////////////////// MESSAGE SQUARE/////////////////////////
+client.on('messageCreate', async (message) => {
+  if (message.content === main.squarecloud) {
+    const channelsquare = client.channels.cache.get('1117602157408026624');  /////////iID DO CANAL ONDE A MENSAGEM VAI SER ENVIADA
+
+    if (!channelsquare) return;
+    
+
+    const square = new Discord.EmbedBuilder()
+          .setThumbnail('https://media.discordapp.net/attachments/1115114682781544458/1115416326668816434/logo_essenze_v1.png?')
+          .setColor(main.color)
+          .setImage('https://media.discordapp.net/attachments/1115114682781544458/1125277514487582920/unknown.png?')
+          .setDescription('## Informações Square Cloud\n\n ### Developed by ***Prisma Studios </>***')
+          .addFields(
+        { name: 'Plano', value: `\`\`\`${main.plano}\`\`\`` },
+        { name: 'Expira em', value: `\`\`\`${main.venci}\`\`\`` },
+        { name: 'Dashboard Square Cloud', value: main.dash },
+        { name: 'Uso de RAM', value: `\`\`\`${main.ram}\`\`\`` },
+        { name: 'API Square', value: `\`\`\`${main.api}\`\`\`` },
+    )
+
+    channelsquare.send({ embeds: [square] });
+
+  }
+});

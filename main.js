@@ -16,6 +16,14 @@ module.exports = {
     ling: 'JavaScript',
     library: 'Discord.js',
 
+    // Square Info
+    squarecloud: 'p!square',
+    plano: 'Basic',
+    venci: '3 de agosto de 2023',
+    dash: '[Square Cloud](https://squarecloud.app/dashboard)',
+    ram: '462MB / 512MB',
+    api: 'https://api.squarecloud.app/v2/service/',
+
     // Status Configuration
     one: 'Adquira seu VIP! ✦',
     two: '✦ Prisma Roleplay',
@@ -48,7 +56,7 @@ module.exports = {
     botton: 'Concordar com os Termos & Liberar Acesso',
 
     // Message Secret
-    secret: 'v2.15304550', // name command
+    secret: 'p!15304550', // name command
     clogsecret: '1117602157408026624', // channel send
 
     // Create Embed
