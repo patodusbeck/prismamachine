@@ -7,26 +7,41 @@
 
 const process = require('node:process');
 
-process.on('unhandledRejection', (reason, promise) => {
+process.on('uncaughtExceptionMonitor', (error, origin) => { 
 
-	console.log(`
-    Eita, achei um bglh paia. Peraí!
-
-
-    🔍 Erro Localizado! Ele está em: ${promise}\n\n\n `, 
-  
-  
-
-
-  `❌ Causa do erro: ${reason}`);
+  console.log(origin, error)
 });
+process.on('unhandledRejection', (reason, promise) => {
+  console.log(`
+  Eita, achei um bglh paia. Peraí!
+
+
+  🔍 Erro Localizado! Ele está em: ${promise}\n\n\n `, 
+
+
+
+
+`❌ Causa do erro: ${reason}`);
+  
+  let ErrorEmbed = client.channels.cache.get(main.channellog)
+  const embedE = new Discord.EmbedBuilder()
+      .setTitle('Alerta: Erro detectado no sistema!')
+      .setDescription(`Há um erro em: \n\nReason: \`\`\`${reason}\`\`\`\n\nPromise: \`\`\`${promise}\`\`\` `)
+      .setColor(main.color)
+
+
+  ErrorEmbed.send({
+      embeds: [embedE],
+  })
+})
+
 ////////////////////////CONST'S \\\\\\\\\\\\\\\\\\\\\
 const main = require('./main.js')
 const Discord = require("discord.js");
 const { QuickDB } = require("quick.db")
 const db = new QuickDB()
 const { GatewayIntentBits } = require("discord.js")
-const config = require("./Config.json");
+//const config = require("./Config.json");
 const { clear } = require('node:console');
 const client = new Discord.Client({
     intents: [ 
@@ -42,7 +57,7 @@ GatewayIntentBits.GuildVoiceStates,
 module.exports = client;
 
 client.slashCommands = new Discord.Collection();
-
+('./src/Handler/index.js')
 require("./src/Handler")(client);
 
 /*
@@ -159,7 +174,7 @@ client.on('ready', (c) => {
   console.clear();
   console.log(`✦ Prisma Studios </> - Online!`)
   console.log('𝔓𝔄𝔗𝔒 𝔇𝔘𝔖 𝔅𝔈ℭ𝔎');
-
+  
   setInterval(() => {
     let random = Math.floor(Math.random() * status.length);
     client.user.setActivity(status[random]);
@@ -278,10 +293,69 @@ client.on('ready', (c) => {
                                                         );
                                                   
                                                         interaction.reply({ content: `Olá **${interaction.user.username}**, Recebemos sua Whitelist. Desde já, a Equipe Prisma Roleplay lhe deseja boa sorte!`, ephemeral: true})
-                                                        await interaction.guild.channels.cache.get(await db.get(`canal_logs_${interaction.guild.id}`)).send({ embeds: [embed] })
-                                                      }
-                                                    }
-                                                  })
+                                                        
+                                                        const b = new Discord.ButtonBuilder()
+                                                        .setLabel('Aceitar Whitelist')
+                                                        .setEmoji("<:logo:1115393036910874664>")
+                                                        .setStyle("Success")
+                                                        .setCustomId('fun')
+                                                
+                                                        const b1 = new Discord.ButtonBuilder()
+                                                        .setLabel('Recusar Whitelist')
+                                                        .setEmoji("<:logo:1115393036910874664>")
+                                                        .setStyle("Danger")
+                                                        .setCustomId('adm')
+                                                
+                                                        const ac = new Discord.ActionRowBuilder()
+                                                        .addComponents(b, b1)
+                                                        
+                                                       const aa = await interaction.guild.channels.cache.get(await db.get(`canal_logs_${interaction.guild.id}`)).send({ embeds: [embed], components: [ac]})
+                                                       const ccl = aa.createMessageComponentCollector()
+                                                       ccl.on('collect', async(help) => {
+                                               
+                                                           if(help.customId === "fun") {
+                                               
+                                                            const selectMenu = new Discord.UserSelectMenuBuilder()
+                                                            .setCustomId('selectMenu')
+                                                            .setPlaceholder("Adicionar Cargo à")
+                                                            .setMinValues(1)
+                                                            .setMaxValues(1)
+                                                      
+                                                          const row = new Discord.ActionRowBuilder().addComponents(selectMenu);
+                                                      
+                                                               
+                                                          if(!['selectMenu'].includes(customId)) return;
+        await interaction.deferUpdate();
+		await interaction.deleteReply();
+        const embed = new EmbedBuilder()
+        TicketSchema.findOne({GuildID: guild.id, ChannelID: channel.id}, async (err, data) => {
+            if (err) throw err;
+            if (!data) return interaction.reply({embeds: [embed.setColor('#9c89ad').setDescription(config.ticketError)], ephemeral: true}).catch(error => {return});
+            const findMembers = await TicketSchema.findOne({GuildID: guild.id, ChannelID: channel.id, MembersID: interaction.values[0]});
+            if(!findMembers) {
+            data.MembersID.push(interaction.values[0]);
+            channel.permissionOverwrites.edit(interaction.values[0], {
+                SendMessages: true,
+                ViewChannel: true,
+                ReadMessageHistory: true
+            }).catch(error => {return});
+            interaction.channel.send({embeds: [embed.setColor('#9c89ad').setDescription('<@' + interaction.values[0] + '>' + ' ' + config.ticketMemberAdd)]}).catch(error => {return});
+            data.save();
+            }else {
+            data.MembersID.remove(interaction.values[0]);
+            channel.permissionOverwrites.delete(interaction.values[0]).catch(error => {return});
+            interaction.channel.send({embeds: [embed.setColor('#9c89ad').setDescription('<@' + interaction.values[0] + '>' + ' ' + config.ticketMemberRemove)]}).catch(error => {return});
+            data.save();
+            }
+    })
+    }
+})}
+                                                               help.reply({embeds: [selectMenu], components: [row], ephemeral: true})
+                                                              }
+
+                                                            })
+                                                            
+                                                      
 
                                             
 
@@ -449,3 +523,4 @@ client.on('messageCreate', async (message) => {
 
   }
 });
+

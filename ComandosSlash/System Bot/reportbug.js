@@ -46,10 +46,10 @@ module.exports = {
       }
       try {
         await bot.channels.cache
-          .get(main.wellog)
+          .get(main.channellog)
           .send({ embeds: [embed] });
         await interaction.reply({
-          content: "Bug reportado com sucesso!",
+          content: "Seu bug reportado com sucesso!",
           ephemeral: true,
         });
       } catch(error) {

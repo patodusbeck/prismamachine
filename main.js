@@ -1,5 +1,14 @@
 // - 𝔓𝔄𝔗𝔒 𝔇𝔘𝔖 𝔅𝔈ℭ𝔎 - //
-// - developer by pato dus beck - //
+/* 
+const developers = [
+  'PatoDusBeck (@emn.420)',
+  'Pzz (@stalonny.mta)',
+];
+
+const founders = [
+  'Synsor (@emnwqq)'
+];
+*/
 
 module.exports = {
     // Basic configuration
@@ -29,7 +38,7 @@ module.exports = {
     two: '✦ Prisma Roleplay',
     three: 'Venha se divertir!',
 
-    // Welcome & Leave Message
+    // Welcome & Leave Messagem
     wellog: '1117602396961509406', // channel log
     levlog: '🔔・log-discord', // channel log
 
