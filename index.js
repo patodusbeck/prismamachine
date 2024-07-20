@@ -25,7 +25,7 @@ process.on('unhandledRejection', (reason, promise) => {
   
   let ErrorEmbed = client.channels.cache.get(main.channellog)
   const embedE = new Discord.EmbedBuilder()
-      .setTitle('Alerta: Erro detectado no sistema!')
+      .setTitle('Erro detectado no sistema!')
       .setDescription(`Há um erro em: \n\nReason: \`\`\`${reason}\`\`\`\n\nPromise: \`\`\`${promise}\`\`\` `)
       .setColor(main.color)
 
