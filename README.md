@@ -14,4 +14,6 @@
 - [Discord](https://discord.gg/invite/th2ccs5FG3)
 
 
-## ✦ Bot feito por: PatoDusBeck
+## ✦ Projeto Destinado à StalonnY - BCC
+
+### Developed by PatoDusBeck
